@@ -262,9 +262,13 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BranchesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RentsController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
+    <Compile Include="Controllers\TypeOfVehiclesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\VehiclesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -279,6 +283,10 @@
     <Compile Include="Migrations\201806041041598_HopeItWillWork.cs" />
     <Compile Include="Migrations\201806041041598_HopeItWillWork.Designer.cs">
       <DependentUpon>201806041041598_HopeItWillWork.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806050704061_New Initial Data.cs" />
+    <Compile Include="Migrations\201806050704061_New Initial Data.Designer.cs">
+      <DependentUpon>201806050704061_New Initial Data.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -380,6 +388,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806041041598_HopeItWillWork.resx">
       <DependentUpon>201806041041598_HopeItWillWork.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806050704061_New Initial Data.resx">
+      <DependentUpon>201806050704061_New Initial Data.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
