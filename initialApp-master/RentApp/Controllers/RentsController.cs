@@ -10,17 +10,24 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using RentApp.Models.Entities;
 using RentApp.Persistance;
+using RentApp.Persistance.UnitOfWork;
 
 namespace RentApp.Controllers
 {
     public class RentsController : ApiController
     {
         private RADBContext db = new RADBContext();
+        private readonly IUnitOfWork unitOfWork;
 
-        // GET: api/Rents
-        public IQueryable<Rent> GetRents()
+
+        public RentsController(IUnitOfWork unitOfWork)
         {
-            return db.Rents;
+            this.unitOfWork = unitOfWork;
+        }
+        // GET: api/Rents
+        public IEnumerable<Rent> GetServices()
+        {
+            return unitOfWork.Rents.GetAll();
         }
 
         // GET: api/Rents/5
