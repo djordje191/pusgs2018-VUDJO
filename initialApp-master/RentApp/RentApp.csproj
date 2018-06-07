@@ -264,6 +264,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AppUsersController.cs" />
     <Compile Include="Controllers\BranchesController.cs" />
+    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RentsController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
@@ -289,10 +290,15 @@
     <Compile Include="Migrations\201806050704061_New Initial Data.Designer.cs">
       <DependentUpon>201806050704061_New Initial Data.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806070945104_added Comments.cs" />
+    <Compile Include="Migrations\201806070945104_added Comments.Designer.cs">
+      <DependentUpon>201806070945104_added Comments.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Entities\Branch.cs" />
+    <Compile Include="Models\Entities\Comment.cs" />
     <Compile Include="Models\Entities\RAIdentityUser.cs" />
     <Compile Include="Models\Entities\AppUser.cs" />
     <Compile Include="Models\Entities\Rent.cs" />
@@ -302,8 +308,10 @@
     <Compile Include="Persistance\RADBContext.cs" />
     <Compile Include="Persistance\Repository\AppUserRepository.cs" />
     <Compile Include="Persistance\Repository\BranchRepository.cs" />
+    <Compile Include="Persistance\Repository\CommentRepository.cs" />
     <Compile Include="Persistance\Repository\IAppUserRepository.cs" />
     <Compile Include="Persistance\Repository\IBranchRepository.cs" />
+    <Compile Include="Persistance\Repository\ICommentRepository.cs" />
     <Compile Include="Persistance\Repository\IRentRepository.cs" />
     <Compile Include="Persistance\Repository\IRepository.cs" />
     <Compile Include="Persistance\Repository\IServiceRepository.cs" />
@@ -408,6 +416,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806050704061_New Initial Data.resx">
       <DependentUpon>201806050704061_New Initial Data.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806070945104_added Comments.resx">
+      <DependentUpon>201806070945104_added Comments.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
