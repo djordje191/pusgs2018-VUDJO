@@ -7,6 +7,7 @@ import { HttpClientXsrfModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 
 
@@ -14,7 +15,8 @@ import { RegisterFormComponent } from './register-form/register-form.component';
   declarations: [
     AppComponent,
     LoginFormComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
