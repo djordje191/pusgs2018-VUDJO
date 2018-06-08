@@ -29,6 +29,7 @@ namespace RentApp
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
+            
             ConfigureOAuthTokenGeneration(app);
             ConfigureOAuthTokenConsumption(app);
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
@@ -48,7 +49,7 @@ namespace RentApp
                 TokenEndpointPath = new PathString("/oauth/token"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
                 Provider = new CustomOAuthProvider(),
-                //AccessTokenFormat = new CustomJwtFormat("http://localhost:51680") //TODO Kad promenis port, menjaj i ovde. ---> Premesteno u UnityConfig!
+                AccessTokenFormat = new CustomJwtFormat("http://localhost:51680") //TODO Kad promenis port, menjaj i ovde. ---> Premesteno u UnityConfig!
             };
 
             // OAuth 2.0 Bearer Access Token Generation

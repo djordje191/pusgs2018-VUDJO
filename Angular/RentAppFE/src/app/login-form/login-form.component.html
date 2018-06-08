@@ -37,5 +37,10 @@
             </div>
           </form>
         </div>
+
+        <button class="btn btn- danger" (click)="register()">  reg </button>
+        <ul>
+          <li *ngFor="let user of users">{{user.Id}} {{user.FullName}}</li>
+        </ul>
   </div>
 </div>

@@ -103,12 +103,10 @@ namespace RentApp.Migrations
             if (!context.Users.Any(u => u.UserName == "appu"))
 
             {
-
                 var _appUser = context.AppUsers.FirstOrDefault(a => a.FullName == "AppUser AppUserovic");
                 var user = new RAIdentityUser() { Id = "appu", UserName = "appu", Email = "appu@yahoo.com", PasswordHash = RAIdentityUser.HashPassword("appu"), AppUserId = _appUser.Id };
                 userManager.Create(user);
                 userManager.AddToRole(user.Id, "AppUser");
-
             }
         }
 
