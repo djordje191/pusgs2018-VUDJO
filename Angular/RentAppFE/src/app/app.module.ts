@@ -14,6 +14,7 @@ import { HashLocationStrategy, LocationStrategy, APP_BASE_HREF } from '@angular/
 import { FormsModule } from '@angular/forms';
 import { BranchComponent } from './branch/branch.component';
 import { VehicleComponent } from './vehicle/vehicle.component';
+import { AddServiceComponent } from './add-service/add-service.component';
 
 const Routes=[
   {
@@ -33,7 +34,8 @@ const Routes=[
     RegisterFormComponent,
     NavBarComponent,
     BranchComponent,
-    VehicleComponent
+    VehicleComponent,
+    AddServiceComponent
   ],
   imports: [
     BrowserModule,

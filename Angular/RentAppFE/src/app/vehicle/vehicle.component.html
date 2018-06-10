@@ -8,7 +8,7 @@
   <div class="form-group">
     <label class="col-md-4 control-label" for="selectbasic">Vehicle Type:</label>
     <div class="col-md-4">
-      <select id="type" name="type" class="form-control">
+      <select id="type" name="type" class="form-control" ngModel #type="ngModel">
         <option value="1">Option one</option>
         <option value="2">Option two</option>
       </select>
@@ -93,7 +93,7 @@
   <div class="form-group">
     <label class="col-md-4 control-label" for="textarea">Description:</label>
     <div class="col-md-4">                     
-      <textarea class="form-control" id="textarea" name="textarea"></textarea>
+      <textarea class="form-control" id="description" name="description" ngModel  #description="ngModel"></textarea>
     </div>
   </div>
   
