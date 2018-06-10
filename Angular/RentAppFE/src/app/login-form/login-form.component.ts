@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SignUpServiceService } from 'src/app/services/sign-up-service.service';
 import { AppUsers } from 'src/app/models/AppUsers.model';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-login-form',
@@ -26,6 +27,10 @@ export class LoginFormComponent implements OnInit {
         console.log(error);
       })
 
+  }
+
+  onSubmit(f: NgForm) {
+    console.log(f.value.email, f.value.password);
   }
 
 }

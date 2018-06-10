@@ -11,6 +11,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { Router, RouterModule, Routes, ActivatedRoute
 } from '@angular/router';
 import { HashLocationStrategy, LocationStrategy, APP_BASE_HREF } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 const Routes=[
   {
@@ -35,7 +36,8 @@ const Routes=[
     HttpModule,
     HttpClientModule,
     HttpClientXsrfModule,
-    RouterModule.forRoot(Routes)
+    RouterModule.forRoot(Routes),
+    FormsModule
   ],
   providers: [
   ],
