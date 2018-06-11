@@ -30,7 +30,9 @@ export class SignUpServiceService {
       .map(this.parseData)
       .catch(this.handleError);
   }
-  postMethodDemo(newMember): Observable<any> {
-    return this.httpClient.post('http://localhost:51680/api/AppUsers', newMember)
+  postUser(newMember): Observable<any> {
+    console.log(newMember)
+    return this.httpClient.post("http://localhost:51680/api/Account/Register", newMember)
+
   }
 }

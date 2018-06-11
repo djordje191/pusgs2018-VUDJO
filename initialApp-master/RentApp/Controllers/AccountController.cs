@@ -318,13 +318,28 @@ namespace RentApp.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new RAIdentityUser() { UserName = model.Email, Email = model.Email };
+            var appUser = new AppUser() { FullName = model.FullName ,Email=model.Email,  BirthDay = model.DateOfBirth, /*CreatingServicesBan = true,*/ /*IsRegistered = false*/ };
 
-            IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+            var user = new RAIdentityUser() { UserName = model.Email, Email = model.Email, AppUser = appUser };
+
+            //try
+            //{
+            //    UserManager.Create(user);
+            //    //UserManager.AddToRole(user.Id, model.DesiredRole);
+            //}
+            //catch//(DbEntityValidationException)
+            //{
+            //    return Content(System.Net.HttpStatusCode.BadRequest, "User already exists!");
+            //}
+
+            //var user = new RAIdentityUser() { UserName = model.Email, Email = model.Email,  };
+
+            IdentityResult result = await UserManager.CreateAsync(user, user.PasswordHash = RAIdentityUser.HashPassword(model.Password));
 
             if (!result.Succeeded)
             {
-                return GetErrorResult(result);
+                return Content(System.Net.HttpStatusCode.BadRequest, "User already exists!");
+               
             }
 
             return Ok();

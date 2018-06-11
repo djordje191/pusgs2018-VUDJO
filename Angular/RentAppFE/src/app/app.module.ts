@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { BranchComponent } from './branch/branch.component';
 import { VehicleComponent } from './vehicle/vehicle.component';
 import { AddServiceComponent } from './add-service/add-service.component';
+import { ClockComponent } from './get-clock-time/get-clock-time.component';
 
 const Routes=[
   {
@@ -35,7 +36,8 @@ const Routes=[
     NavBarComponent,
     BranchComponent,
     VehicleComponent,
-    AddServiceComponent
+    AddServiceComponent,
+    ClockComponent
   ],
   imports: [
     BrowserModule,
