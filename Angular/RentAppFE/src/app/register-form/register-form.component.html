@@ -47,18 +47,20 @@
         </div>
 
         <div class="form-group">
+          <label for="DateBirth">Date of Birth</label>
+          <input type="date" min="1920-01-1" class="form-control" name="DateOfBirth" ngModel required #DateOfBirth="ngModel"/>
+        </div>
+
+        <div class="form-group">
           <label for="password">Password</label>
-          <input type="password" class="form-control" name="Password" ngModel required minlength="7" maxlength="42" #Password="ngModel">
+          <input type="password" class="form-control" name="Password" ngModel required pattern="(?=.*\d)(?=.*[!@#$%^*/\._?])(?=.*[a-z])(?=.*[A-Z]).{7,}" #Password="ngModel">
           <div *ngIf="Password.errors && (Password.dirty || Password.touched)"
            class="alert alert-danger">  
             <div [hidden]="!Password.errors.required">
               Password is required!
             </div>
-            <div [hidden]="!Password.errors.minlength">
-              Password min length is 7 characters.
-            </div>
-            <div [hidden]="!Password.errors.maxlength">
-              Password max length is 42 characters.
+            <div [hidden]="!Password.errors.pattern">
+                Password must contain at leasst one upper case, number and special character (!@#$...). Length must be 7 charachters at least.
             </div>
           </div>
         </div>
@@ -69,7 +71,7 @@
           <div *ngIf="(RepeatedPassword.dirty || RepeatedPassword.touched)"
            class="alert alert-danger">  
             <div [hidden]="Password.value == RepeatedPassword.value">
-              Password doesn't match
+              <p id="errPasswordMatch">Password doesn't match</p>
             </div>
           </div>
         </div>
