@@ -24,7 +24,7 @@ export class RegisterFormComponent implements OnInit {
     this.signUpServiceService.postUser(appUser)
     .subscribe(
       data => {
-        alert("You have been successfully registered!");
+        alert(data);
       },
       error => {
         alert("User already exists!");
