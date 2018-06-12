@@ -320,21 +320,10 @@ namespace RentApp.Controllers
 
             var appUser = new AppUser() { FullName = model.FullName ,Email=model.Email,  BirthDay = model.DateOfBirth, /*CreatingServicesBan = true,*/ /*IsRegistered = false*/ };
 
-            var user = new RAIdentityUser() { UserName = model.Email, Email = model.Email, AppUser = appUser };
-
-            //try
-            //{
-            //    UserManager.Create(user);
-            //    //UserManager.AddToRole(user.Id, model.DesiredRole);
-            //}
-            //catch//(DbEntityValidationException)
-            //{
-            //    return Content(System.Net.HttpStatusCode.BadRequest, "User already exists!");
-            //}
-
-            //var user = new RAIdentityUser() { UserName = model.Email, Email = model.Email,  };
-
-            IdentityResult result = await UserManager.CreateAsync(user, user.PasswordHash = RAIdentityUser.HashPassword(model.Password));
+            var user = new RAIdentityUser() {Id=model.Email, UserName = model.Email, Email = model.Email, AppUser = appUser};
+            user.PasswordHash = RAIdentityUser.HashPassword(model.Password);
+            IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+            await UserManager.AddToRoleAsync(model.Email, "AppUser");
 
             if (!result.Succeeded)
             {
@@ -344,6 +333,7 @@ namespace RentApp.Controllers
 
             return Ok();
         }
+
 
         // POST api/Account/RegisterExternal
         [OverrideAuthentication]

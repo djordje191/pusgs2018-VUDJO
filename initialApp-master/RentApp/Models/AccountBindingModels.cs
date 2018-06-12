@@ -58,6 +58,18 @@ namespace RentApp.Models
         public string RepeatedPassword { get; set; }
     }
 
+    public class LoginBindingModel
+    {
+        [Required]
+        [Display(Name = "Username")]
+        public string Username { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        public string Password { get; set; }
+    }
+
     public class RegisterExternalBindingModel
     {
         [Required]

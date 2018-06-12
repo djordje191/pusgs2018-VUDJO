@@ -18,15 +18,6 @@ export class LoginFormComponent implements OnInit {
   }
 
   onSubmit(loginData:LoginData) {
-
-    this.logInService.postLogin(LoginData)
-    .subscribe(
-      data => {
-        alert("Logged in...");
-      },
-      error => {
-        console.log(error);
-      })
-
+    this.logInService.getTheToken(loginData);
   }
 }
