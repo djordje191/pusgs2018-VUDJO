@@ -27,7 +27,7 @@ namespace RentApp.Controllers
         // GET: api/Services
         public IEnumerable<Service> GetServices()
         {
-            return unitOfWork.Services.GetAll();
+           return unitOfWork.Services.GetAll();
         }
 
         // GET: api/Services/5
@@ -113,7 +113,7 @@ namespace RentApp.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                unitOfWork.Dispose();
             }
             base.Dispose(disposing);
         }

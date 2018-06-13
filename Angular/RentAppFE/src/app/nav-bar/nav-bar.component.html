@@ -12,8 +12,9 @@
           <li><a href="#">Page 2</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a [routerLink]="['/register']"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-          <li><a [routerLink]="['/login']"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          <li *ngIf="!isLoggedIn()"><a [routerLink]="['/register']"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li *ngIf="!isLoggedIn()"><a [routerLink]="['/login']"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          <li *ngIf="isLoggedIn()"><a [routerLink]="['/login']" (click)="logOut()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
         </ul>
       </div>
     </nav>

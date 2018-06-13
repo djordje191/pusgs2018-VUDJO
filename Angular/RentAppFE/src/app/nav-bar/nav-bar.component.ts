@@ -16,6 +16,16 @@ export class NavBarComponent implements OnInit {
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
     activatedRoute.params.subscribe();
    }
+  
+  isLoggedIn()
+  {
+    return localStorage.jwt;
+  }
+
+  logOut()
+  {
+    localStorage.clear();
+  }
 
   ngOnInit() {
   }

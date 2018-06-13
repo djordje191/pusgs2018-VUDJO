@@ -330,7 +330,6 @@ namespace RentApp.Controllers
                 return Content(System.Net.HttpStatusCode.BadRequest, "User already exists!");
                
             }
-
             return Ok();
         }
 
