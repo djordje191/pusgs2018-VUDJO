@@ -30,6 +30,10 @@ const Routes=[
   {
     path: "listOfService",
     component:ListOfServicesComponent
+  },
+  {
+    path:"addServices",
+    component:AddServiceComponent
   }
 ]
 
@@ -43,7 +47,7 @@ const Routes=[
     VehicleComponent,
     AddServiceComponent,
     ClockComponent,
-    ListOfServicesComponent
+    ListOfServicesComponent,
   ],
   imports: [
     BrowserModule,

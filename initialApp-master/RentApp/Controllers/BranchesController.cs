@@ -86,8 +86,8 @@ namespace RentApp.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Branches.Add(branch);
-            db.SaveChanges();
+            unitOfWork.Branches.Add(branch);
+            unitOfWork.Complete();
 
             return CreatedAtRoute("DefaultApi", new { id = branch.Id }, branch);
         }

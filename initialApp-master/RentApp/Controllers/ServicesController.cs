@@ -82,13 +82,15 @@ namespace RentApp.Controllers
         [ResponseType(typeof(Service))]
         public IHttpActionResult PostService(Service service)
         {
+            Service s = new Service();
+            s = service;
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Services.Add(service);
-            db.SaveChanges();
+            unitOfWork.Services.Add(s);
+            unitOfWork.Complete();
 
             return CreatedAtRoute("DefaultApi", new { id = service.Id }, service);
         }
@@ -113,7 +115,7 @@ namespace RentApp.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                unitOfWork.Dispose();
             }
             base.Dispose(disposing);
         }
