@@ -16,8 +16,8 @@ import { BranchComponent } from './branch/branch.component';
 import { VehicleComponent } from './vehicle/vehicle.component';
 import { AddServiceComponent } from './add-service/add-service.component';
 import { ClockComponent } from './get-clock-time/get-clock-time.component';
-import { ListOfServicesComponent } from './list-of-services/list-of-services.component';
 import { ServiceComponentComponent } from './service-component/service-component.component';
+import { UploadImageComponent } from './upload-image/upload-image.component';
 
 const Routes=[
   {
@@ -30,7 +30,7 @@ const Routes=[
   },
   {
     path: "listOfService",
-    component:ListOfServicesComponent
+    component:ServiceComponentComponent
   },
   {
     path:"addServices",
@@ -48,8 +48,8 @@ const Routes=[
     VehicleComponent,
     AddServiceComponent,
     ClockComponent,
-    ListOfServicesComponent,
-    ServiceComponentComponent
+    ServiceComponentComponent,
+    UploadImageComponent
   ],
   imports: [
     BrowserModule,

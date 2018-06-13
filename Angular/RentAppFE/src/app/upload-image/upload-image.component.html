@@ -1,0 +1,10 @@
+<div class="container">
+  <form #imageForm=ngForm (ngSubmit)="OnSubmit(Image)">
+    <img [src]="imageUrl" style="width:250px; height:150px">
+    <br>
+    <br>
+    <input type="file" (change)="handleFileInput($event.target.files)" #Image accept="image/*">
+    <br>
+    <button type="submit" [disabled]="Image.value=='' " class="btn btn-success">Submit</button>
+  </form>
+</div>
