@@ -17,6 +17,7 @@ import { VehicleComponent } from './vehicle/vehicle.component';
 import { AddServiceComponent } from './add-service/add-service.component';
 import { ClockComponent } from './get-clock-time/get-clock-time.component';
 import { ListOfServicesComponent } from './list-of-services/list-of-services.component';
+import { ServiceComponentComponent } from './service-component/service-component.component';
 
 const Routes=[
   {
@@ -48,6 +49,7 @@ const Routes=[
     AddServiceComponent,
     ClockComponent,
     ListOfServicesComponent,
+    ServiceComponentComponent
   ],
   imports: [
     BrowserModule,

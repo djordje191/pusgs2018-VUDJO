@@ -24,11 +24,10 @@ export class RegisterFormComponent implements OnInit {
     this.signUpServiceService.postUser(appUser)
     .subscribe(
       data => {
-        alert(data);
+        alert("You have been successfully registered!");
       },
       error => {
         alert("User already exists!");
       })
-      //form.resetForm();
   }
 }
