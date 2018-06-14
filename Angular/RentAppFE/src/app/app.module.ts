@@ -17,6 +17,7 @@ import { VehicleComponent } from './vehicle/vehicle.component';
 import { AddServiceComponent } from './add-service/add-service.component';
 import { ClockComponent } from './get-clock-time/get-clock-time.component';
 import { ServiceComponentComponent } from './service-component/service-component.component';
+import {ListOfBranchesComponent} from './list-of-branches/list-of-branches.component'
 import { UploadImageComponent } from './upload-image/upload-image.component';
 
 const Routes=[
@@ -35,7 +36,13 @@ const Routes=[
   {
     path:"addServices",
     component:AddServiceComponent
+  },
+  {
+    path:"listOfBranches",
+    component:ListOfBranchesComponent
+
   }
+
 ]
 
 @NgModule({
@@ -49,7 +56,8 @@ const Routes=[
     AddServiceComponent,
     ClockComponent,
     ServiceComponentComponent,
-    UploadImageComponent
+    UploadImageComponent,
+    ListOfBranchesComponent
   ],
   imports: [
     BrowserModule,
