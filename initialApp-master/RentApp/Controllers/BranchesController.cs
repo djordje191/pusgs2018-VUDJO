@@ -31,6 +31,38 @@ namespace RentApp.Controllers
             return unitOfWork.Branches.GetAll();
         }
 
+        [HttpGet]
+        [Route("api/GetLogo")]
+        public HttpResponseMessage ImageGet(string fileName)
+        {
+            var filePath = HttpContext.Current.Server.MapPath("~/Images/" + fileName);
+            var ext = System.IO.Path.GetExtension(filePath);
+            var contents = System.IO.File.ReadAllBytes(filePath);
+
+            System.IO.MemoryStream ms = new System.IO.MemoryStream(contents);
+
+            var response = Request.CreateResponse(HttpStatusCode.OK);
+            response.Content = new StreamContent(ms);
+            response.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("image/" + ext);
+
+            return response;
+        }
+
+        [Route("api/GetBranches")]
+        public IEnumerable<Branch> GetBranches(string serviceEmail)
+        {
+            IEnumerable<Service> services = unitOfWork.Services.GetAll();
+            foreach(Service s in services)
+            {
+                if (s.Email == serviceEmail)
+                {
+                    return s.Branches;
+                }
+            }
+
+            return null;
+        }
+
         // GET: api/Branches/5
         [ResponseType(typeof(Branch))]
         public IHttpActionResult GetBranch(int id)

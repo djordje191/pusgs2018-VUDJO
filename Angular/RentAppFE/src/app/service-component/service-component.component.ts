@@ -5,7 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import { debug } from 'util';
 import { DomSanitizer } from '@angular/platform-browser';
 import { UploadFileServiceService } from '../services/upload-file-service.service';
-
+import { ListOfBranchesComponent } from '../list-of-branches/list-of-branches.component';
 @Component({
   selector: 'app-service-component',
   templateUrl: './service-component.component.html',
@@ -14,7 +14,6 @@ import { UploadFileServiceService } from '../services/upload-file-service.servic
 })
 
 export class ServiceComponentComponent implements OnInit {
-
   public Services: any;
 
   constructor(private servicesGetter:ListOfServicesService, private imagesGetter:UploadFileServiceService, private sanitizer: DomSanitizer) { 

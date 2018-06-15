@@ -22,7 +22,7 @@ export class ListOfBranchesService {
     errorMessage = error.message ? error.message : error.toString();
     return Observable.throw(errorMessage);
   }
-  getListOfBranches(): Observable<any> {
-    return this.httpClient.get('http://localhost:51680/api/Branches');
+  getListOfBranches(email:string): Observable<any> {
+    return this.httpClient.get('http://localhost:51680/api/GetBranches?serviceEmail='+email);
   }
 }

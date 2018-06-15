@@ -31,16 +31,14 @@ const Routes=[
   },
   {
     path: "listOfService",
-    component:ServiceComponentComponent
+    component:ServiceComponentComponent,
+    children: [
+      { path: "listOfBranches", component: ListOfBranchesComponent}
+    ]
   },
   {
     path:"addServices",
     component:AddServiceComponent
-  },
-  {
-    path:"listOfBranches",
-    component:ListOfBranchesComponent
-
   }
 
 ]
