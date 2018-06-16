@@ -48,6 +48,42 @@ namespace RentApp.Controllers
             return response;
         }
 
+        [HttpPost]
+        [Route("api/AddBranch")]
+        public HttpResponseMessage UploadImage()
+        {
+            string imageName = null;
+            var httpRequest = HttpContext.Current.Request;
+            //Upload Image
+            var postedFile = httpRequest.Files["Image"];
+            //Create custom filename
+            imageName = new string(Path.GetFileNameWithoutExtension(postedFile.FileName).Take(10).ToArray()).Replace(" ", "-");
+            imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(postedFile.FileName);
+            var filePath = HttpContext.Current.Server.MapPath("~/Images/" + imageName);
+            postedFile.SaveAs(filePath);
+
+            //Parse double num with '.'
+            var currentCulture = System.Globalization.CultureInfo.InstalledUICulture;
+            var numberFormat = (System.Globalization.NumberFormatInfo)currentCulture.NumberFormat.Clone();
+            numberFormat.NumberDecimalSeparator = ".";
+
+            Branch branch = new Branch { Logo = imageName, Address = httpRequest["Address"], Latitude = Double.Parse(httpRequest["Latitude"],numberFormat), Longitude = Double.Parse(httpRequest["Longitude"],numberFormat) };
+            unitOfWork.Branches.Add(branch);
+            
+            foreach(Service s in unitOfWork.Services.GetAll())
+            {
+                if(s.Name == httpRequest["ServiceName"] && s.Email == httpRequest["ServiceEmail"])
+                {
+                    s.Branches.Add(branch);
+                    unitOfWork.Services.Update(s);
+                }
+            }
+
+            unitOfWork.Complete();
+
+            return Request.CreateResponse(HttpStatusCode.Created);
+        }
+
         [Route("api/GetBranches")]
         public IEnumerable<Branch> GetBranches(string serviceEmail)
         {

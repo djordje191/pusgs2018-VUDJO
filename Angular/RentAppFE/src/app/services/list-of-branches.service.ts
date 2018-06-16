@@ -22,6 +22,20 @@ export class ListOfBranchesService {
     errorMessage = error.message ? error.message : error.toString();
     return Observable.throw(errorMessage);
   }
+
+  postFile(formValues, fileToUpload:File, serviceName:string, serviceEmail:string){
+    const endpoint = 'http://localhost:51680/api/AddBranch';
+    const formData: FormData = new FormData();
+    formData.append('Image', fileToUpload, fileToUpload.name);
+    formData.append('Address', formValues.Address);
+    formData.append('Longitude', localStorage.getItem('branchLongitude'));
+    formData.append('Latitude', localStorage.getItem('branchLatitude'));
+    formData.append('ServiceName', serviceName);
+    formData.append('ServiceEmail', serviceEmail);
+    return this.http
+      .post(endpoint, formData);
+  }
+
   getListOfBranches(email:string): Observable<any> {
     return this.httpClient.get('http://localhost:51680/api/GetBranches?serviceEmail='+email);
   }

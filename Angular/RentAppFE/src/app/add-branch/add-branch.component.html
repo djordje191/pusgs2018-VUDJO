@@ -1,0 +1,62 @@
+<form #f="ngForm" (ngSubmit)="onSubmit(f.value,Image)" class="form-horizontal">
+  <fieldset>
+  
+  <!-- Form Name -->
+  <div class="row">
+    <div class="col col-lg-4 col-lg-push-4">
+      <legend align="center">Add Branch</legend>
+    </div>
+  </div>
+  
+  <!-- Text input-->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="textinput">Address</label>  
+    <div class="col-md-4">
+    <input id="Address" name="Address" type="text" placeholder="" minlength="4" class="form-control input-md" ngModel required #Address="ngModel">      
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col col-lg-4 col-lg-push-4">
+      <div *ngIf="Address.errors && (Address.dirty || Address.touched)"
+            class="alert alert-danger">  
+          <div [hidden]="!Address.errors.required">
+            Address is required!
+          </div>
+          <div [hidden]="!Address.errors.minlength">
+            Address name must be at least 4 characters long.
+          </div>
+          <div [hidden]="!Address.errors.pattern">
+            Address input is invalid
+          </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- File Button --> 
+  <div class="row">
+    <div class="col col-lg-4 col-lg-push-4">
+      <img [src]="imageUrl" style="width:250px; height:150px">
+      <br>
+      <br>
+      <input type="file" (change)="handleFileInput($event.target.files)" #Image accept="image/*">
+      <br>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col col-lg-4 col-lg-push-4">
+      <app-map></app-map>
+    </div>
+  </div>
+  
+  <!-- Button -->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="addServiceButton"></label>
+    <div class="col-md-4">
+      <button type="submit" id="addServiceButton" name="addServiceButton" class="btn btn-success" [disabled]="!f.valid || Image.value==''">Add Service</button>
+    </div>
+  </div>
+  
+  </fieldset>
+  </form>
