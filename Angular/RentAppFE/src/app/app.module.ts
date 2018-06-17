@@ -22,6 +22,8 @@ import { UploadImageComponent } from './upload-image/upload-image.component';
 import { AddBranchComponent } from './add-branch/add-branch.component';
 import { MapComponent } from './map/map.component';
 import { AgmCoreModule } from '@agm/core';
+import { ListOfVehiclesComponent } from './list-of-vehicles/list-of-vehicles.component';
+import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
 
 const Routes=[
   {
@@ -46,6 +48,14 @@ const Routes=[
   {
     path: "addBranch/:name/:email",
     component:AddBranchComponent
+  },
+  {
+    path: "vehicles/:id",
+    component:ListOfVehiclesComponent
+  },
+  {
+    path: "addVehicle/:id",
+    component:AddVehicleComponent
   }
 
 ]
@@ -64,7 +74,9 @@ const Routes=[
     UploadImageComponent,
     ListOfBranchesComponent,
     AddBranchComponent,
-    MapComponent
+    MapComponent,
+    ListOfVehiclesComponent,
+    AddVehicleComponent
   ],
   imports: [
     BrowserModule,

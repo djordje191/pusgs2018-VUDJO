@@ -13,7 +13,7 @@
             <div class="thumbnail" align="center">
               <img class="group list-group-image" src='http://localhost:51680/api/Services/GetImage?path={{service.Logo}}' alt="" />
               <div class="caption">
-                <h4 class="group inner list-group-item-heading">{{service.Name}}</h4>
+                <a [routerLink]="['/vehicles',service.Id]" ><h4 class="group inner list-group-item-heading">{{service.Name}}</h4></a>
                 <p class="group inner list-group-item-text"> <i>Contact: </i>{{service.Email}}</p>
                 <p class="group inner list-group-item-text"> <i>Description: </i>{{service.Description}}</p>
                 <div class="row">

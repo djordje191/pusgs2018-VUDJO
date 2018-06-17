@@ -75,19 +75,19 @@ namespace RentApp.Migrations
 
             );
 
-            var tov1 = new TypeOfVehicle() { Name = "Karavan" };
-            var tov2 = new TypeOfVehicle() { Name = "Limuzina" };
+            //var tov1 = new TypeOfVehicle() { Name = "Karavan" };
+            //var tov2 = new TypeOfVehicle() { Name = "Limuzina" };
 
-            var v1 = new Vehicle() { Manufactor = "Zastava", Model = "101", PricePerHour = 10.4m, Type = tov1, Year = 1969 };
-            var v2 = new Vehicle() { Manufactor = "Zastava", Model = "Yugo Koral", PricePerHour = 10.4m, Type = tov2, Year = 1988 };
+            //var v1 = new Vehicle() { Manufactor = "Zastava", Model = "101", PricePerHour = 10.4m, Type = tov1, Year = 1969 };
+            //var v2 = new Vehicle() { Manufactor = "Zastava", Model = "Yugo Koral", PricePerHour = 10.4m, Type = tov2, Year = 1988 };
 
-            var b1 = new Branch() { Address = "Sime Solaje 24", Latitude = 123424.2, Longitude = 123232.4 };
+            //var b1 = new Branch() { Address = "Sime Solaje 24", Latitude = 123424.2, Longitude = 123232.4 };
 
-            var s1 = new Service() { Name = "Zastava rent", Email = "kontakt@zastava.rs", Description = "Nepobedivi",Branches = new List<Branch>() { b1},Vehicles=new List<Vehicle>() { v1,v2}  };
+            //var s1 = new Service() { Name = "Zastava rent", Email = "kontakt@zastava.rs", Description = "Nepobedivi",Branches = new List<Branch>() { b1},Vehicles=new List<Vehicle>() { v1,v2}  };
 
-            context.Services.Add(s1);
+            //context.Services.Add(s1);
 
-            SaveChanges(context);
+            //SaveChanges(context);
 
             var userStore = new UserStore<RAIdentityUser>(context);
             var userManager = new UserManager<RAIdentityUser>(userStore);

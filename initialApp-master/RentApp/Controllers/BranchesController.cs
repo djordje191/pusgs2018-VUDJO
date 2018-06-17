@@ -35,6 +35,11 @@ namespace RentApp.Controllers
         [Route("api/GetLogo")]
         public HttpResponseMessage ImageGet(string fileName)
         {
+            if(fileName==null)
+            {
+                fileName = "noimage.jpg";
+            }
+
             var filePath = HttpContext.Current.Server.MapPath("~/Images/" + fileName);
             var ext = System.IO.Path.GetExtension(filePath);
             var contents = System.IO.File.ReadAllBytes(filePath);

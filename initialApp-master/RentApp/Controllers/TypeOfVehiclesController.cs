@@ -23,8 +23,10 @@ namespace RentApp.Controllers
         {
             this.unitOfWork = unitOfWork;
         }
-        // GET: api/TypeOfVehicles
-        public IEnumerable<TypeOfVehicle> GetServices()
+
+        [HttpGet]
+        [Route("api/GetVehicleTypes")]
+        public IEnumerable<TypeOfVehicle> GetVehicleTypes()
         {
             return unitOfWork.TypesOfVehicle.GetAll();
         }

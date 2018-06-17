@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+      <div class="col col-md-3 col-md-push-4">
+        <h3><a [routerLink]="['/addVehicle',args.id]">Add New Vehicle...</a></h3>
+      </div>
+  </div>
+</div>
+
+<div *ngFor="let vehicle of Vehicles">
+    <div class="row">
+      <div class="col col-md-3 col-md-push-4">
+        <div class="container">
+          <div id="products" class="row list-group">
+            <div class="item  col-xs-3 col-lg-3">
+              <div class="thumbnail">
+                <img class="group list-group-image" src='http://localhost:51680/api/Services/GetImage?path={{vehicle.Images}}' alt="Branch logo" />
+                <div class="caption" align="center">
+                  <h4 class="group inner list-group-item-heading">Model: {{vehicle.Model}}</h4>
+                  <h4 class="group inner list-group-item-heading">Manufactor: {{vehicle.Manufactor}}</h4>
+                  <h4 class="group inner list-group-item-heading">Year: {{vehicle.Year}}</h4>
+                  <h4 class="group inner list-group-item-heading">Price per hour: {{vehicle.PricePerHour}}</h4>
+                  <button class="group inner list-group-item-heading" type="submit" id="rentVehicleButton" name="rentVehicleButton" class="btn btn-success" >Rent Vehicle</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
