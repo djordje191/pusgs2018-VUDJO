@@ -12,7 +12,7 @@ import {
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
-
+  userRole:string;
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
     activatedRoute.params.subscribe();
    }
@@ -28,5 +28,11 @@ export class NavBarComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getUserRole();
+  }
+
+  getUserRole()
+  {
+    this.userRole=localStorage.getItem("role");
   }
 }

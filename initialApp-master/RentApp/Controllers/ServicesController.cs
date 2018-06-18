@@ -152,6 +152,20 @@ namespace RentApp.Controllers
             return Request.CreateResponse(HttpStatusCode.Created);
         }
 
+        [HttpPost]
+        [Route("DeleteService")]
+        public HttpResponseMessage DeleteService()
+        {
+            var httpRequest = HttpContext.Current.Request;
+
+            Service service = unitOfWork.Services.Get(Int32.Parse(httpRequest["ServiceId"]));
+            service.IsDeleted = true;
+            unitOfWork.Services.Update(service);
+            unitOfWork.Complete();
+
+            return Request.CreateResponse(HttpStatusCode.Created);
+        }
+
         [HttpGet]
         [Route("GetVehicles")]
         public IEnumerable<Vehicle> GetVehicles(int id)
