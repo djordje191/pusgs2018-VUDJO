@@ -20,6 +20,9 @@
                   <h4 class="group inner list-group-item-heading">Year: {{vehicle.Year}}</h4>
                   <h4 class="group inner list-group-item-heading">Price per hour: {{vehicle.PricePerHour}}</h4>
                   <button class="group inner list-group-item-heading" type="submit" id="rentVehicleButton" name="rentVehicleButton" class="btn btn-success" >Rent Vehicle</button>
+                  <br>
+                  <br>
+                  <button class="group inner list-group-item-heading" type="submit" id="rentVehicleButton" name="rentVehicleButton" class="btn btn-success" [routerLink]="['/editVehicle',vehicle.id]" >Edit Vehicle</button>
                 </div>
               </div>
             </div>

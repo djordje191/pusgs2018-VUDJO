@@ -1,0 +1,65 @@
+<form #f="ngForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+  <fieldset>
+  
+  <!-- Form Name -->
+  <legend align="center">Edit Vehicle</legend>
+  
+  <!-- Text input-->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="textinput">Vehicle Model</label>  
+    <div class="col-md-4">
+    <input id="Model" name="Model" type="text" placeholder="" class="form-control input-md" [(ngModel)]=vehicle.Model required #Model="ngModel">
+      
+    </div>
+  </div>
+  
+  <!-- Text input-->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="textinput">Manufactor</label>  
+    <div class="col-md-4">
+      <input id="Manufactor" name="Manufactor" type="text" placeholder="" class="form-control input-md" [(ngModel)]=vehicle.Manufactor required #Manufactor="ngModel">
+    </div>
+  </div>
+  
+  <!-- Text input-->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="textinput">Year</label>  
+    <div class="col-md-4">
+      <input id="Year" name="Year" type="text" placeholder="" class="form-control input-md" [(ngModel)]=vehicle.Year required #Year="ngModel">
+    </div>
+  </div>
+  
+  <!-- Text input-->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="textinput">Price Per Hour</label>  
+    <div class="col-md-4">
+    <input id="Price" name="Price" type="text" placeholder="" class="form-control input-md" [(ngModel)]=vehicle.PricePerHour required #Price="ngModel">
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="textinput">Vehicle Type</label>  
+    <div class="col-md-4">
+      <select class="form-control" name="Type" id="Type" [(ngModel)]=vehicle.Type required #Type="ngModel">
+          <option *ngFor="let t of vehicleTypes" value="{{t.Id}}">{{t.Name}}</option>
+      </select>
+    </div>
+  </div>
+  
+  <!-- Textarea -->
+  <div class="form-group">
+      <label class="col-md-4 control-label" for="textarea">Description</label>
+      <div class="col-md-4">                     
+        <textarea class="form-control" id="Description" name="Description" [(ngModel)]=vehicle.Description  required #Description="ngModel"></textarea>
+      </div>
+    </div>
+  
+  <div class="form-group">
+      <label class="col-md-4 control-label" for="addServiceButton"></label>
+      <div class="col-md-4">
+        <button type="submit" id="addServiceButton" name="addServiceButton" class="btn btn-success" [disabled]="!f.valid">Add Vehicle</button>
+      </div>
+    </div>
+  
+  </fieldset>
+  </form>

@@ -36,7 +36,7 @@ export class ListOfBranchesService {
       .post(endpoint, formData);
   }
 
-  getListOfBranches(email:string): Observable<any> {
-    return this.httpClient.get('http://localhost:51680/api/GetBranches?serviceEmail='+email);
+  getListOfBranches(id:string): Observable<any> {
+    return this.httpClient.get('http://localhost:51680/api/GetBranches?serviceId='+id);
   }
 }

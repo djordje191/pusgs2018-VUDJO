@@ -51,4 +51,22 @@ export class ListOfVehiclesService {
     return this.http
       .post(endpoint, formData);
   }
+
+  updateVehicle(vehicle:any, id:any){
+    const endpoint = 'http://localhost:51680/api/Vehicles/EditVehicle';
+    const formData: FormData = new FormData();
+    formData.append('Manufactor', vehicle.Manufactor);
+    formData.append('Model', vehicle.Model);
+    formData.append('Type', vehicle.Type);
+    formData.append('PricePerHour', vehicle.PricePerHour);
+    formData.append('Year', vehicle.Year);
+    formData.append('Id', id);
+    formData.append('Description', vehicle.Description);
+    return this.http.post(endpoint, formData);
+  }
+
+  //Preuzima vozilo na osnovu prosledjenog ID-a
+  getVehicle(id:string): Observable<any> {
+    return this.httpClient.get('http://localhost:51680/api/GetVehicle?id='+id);
+  }
 }

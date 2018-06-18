@@ -304,6 +304,10 @@
     <Compile Include="Migrations\201806070945104_added Comments.Designer.cs">
       <DependentUpon>201806070945104_added Comments.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806180735115_vehicle image.cs" />
+    <Compile Include="Migrations\201806180735115_vehicle image.Designer.cs">
+      <DependentUpon>201806180735115_vehicle image.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -434,6 +438,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806070945104_added Comments.resx">
       <DependentUpon>201806070945104_added Comments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806180735115_vehicle image.resx">
+      <DependentUpon>201806180735115_vehicle image.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

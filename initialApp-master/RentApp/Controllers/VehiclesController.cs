@@ -33,6 +33,7 @@ namespace RentApp.Controllers
 
         // GET: api/Vehicles/5
         [ResponseType(typeof(Vehicle))]
+        [Route("api/GetVehicle")]
         public IHttpActionResult GetVehicle(int id)
         {
             Vehicle vehicle = db.Vehicles.Find(id);
@@ -109,6 +110,30 @@ namespace RentApp.Controllers
 
             return Ok(vehicle);
         }
+
+        [HttpPost]
+        [Route("api/Vehicles/EditVehicle")]
+        public HttpResponseMessage EditVehicle()
+        {
+            var httpRequest = HttpContext.Current.Request;
+
+            TypeOfVehicle type = unitOfWork.TypesOfVehicle.Get(Int32.Parse(httpRequest["Type"]));
+
+            Vehicle vehicle = unitOfWork.Vehicles.Get(Int32.Parse(httpRequest["Id"]));
+            vehicle.Manufactor = httpRequest["Manufactor"];
+            vehicle.Model = httpRequest["Model"];
+            vehicle.Description = httpRequest["Description"];
+            vehicle.Year = Int32.Parse(httpRequest["Year"]);
+            vehicle.PricePerHour = Decimal.Parse(httpRequest["PricePerHour"]);
+
+
+            unitOfWork.Vehicles.Update(vehicle);
+            unitOfWork.Complete();
+
+            return Request.CreateResponse(HttpStatusCode.Created);
+        }
+
+
 
         [HttpPost]
         [Route("api/AddVehicle")]

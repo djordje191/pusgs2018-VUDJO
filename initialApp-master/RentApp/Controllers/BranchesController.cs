@@ -90,15 +90,12 @@ namespace RentApp.Controllers
         }
 
         [Route("api/GetBranches")]
-        public IEnumerable<Branch> GetBranches(string serviceEmail)
+        public IEnumerable<Branch> GetBranches(int serviceId)
         {
-            IEnumerable<Service> services = unitOfWork.Services.GetAll();
-            foreach(Service s in services)
+            Service services = unitOfWork.Services.Get(serviceId);
+            if(services!=null)
             {
-                if (s.Email == serviceEmail)
-                {
-                    return s.Branches;
-                }
+                return services.Branches;
             }
 
             return null;

@@ -14,7 +14,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   providers:[ListOfBranchesService, UploadFileServiceService]
 })
 export class ListOfBranchesComponent implements OnInit {
-  @Input() serviceEmail: string;
+  @Input() serviceId: string;
   public Branches : any;
 
   constructor(private branchesGetter:ListOfBranchesService, private imagesGetter:UploadFileServiceService, private sanitizer: DomSanitizer) { 
@@ -25,10 +25,10 @@ export class ListOfBranchesComponent implements OnInit {
   }
 
   getListOfBranches(){
-    this.branchesGetter.getListOfBranches(this.serviceEmail)
+    this.branchesGetter.getListOfBranches(this.serviceId)
     .subscribe(
       data => {
-        console.log(this.serviceEmail);
+        console.log(this.serviceId);
         this.Branches=data;
       },
       error => {

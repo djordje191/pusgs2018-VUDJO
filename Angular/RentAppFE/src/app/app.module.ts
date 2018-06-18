@@ -24,6 +24,7 @@ import { MapComponent } from './map/map.component';
 import { AgmCoreModule } from '@agm/core';
 import { ListOfVehiclesComponent } from './list-of-vehicles/list-of-vehicles.component';
 import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
+import { EditVehicleComponent } from './edit-vehicle/edit-vehicle.component';
 
 const Routes=[
   {
@@ -56,6 +57,10 @@ const Routes=[
   {
     path: "addVehicle/:id",
     component:AddVehicleComponent
+  },
+  {
+    path: "editVehicle/:id",
+    component:EditVehicleComponent
   }
 
 ]
@@ -76,7 +81,8 @@ const Routes=[
     AddBranchComponent,
     MapComponent,
     ListOfVehiclesComponent,
-    AddVehicleComponent
+    AddVehicleComponent,
+    EditVehicleComponent
   ],
   imports: [
     BrowserModule,
