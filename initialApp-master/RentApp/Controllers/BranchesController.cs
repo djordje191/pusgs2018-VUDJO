@@ -31,6 +31,79 @@ namespace RentApp.Controllers
             return unitOfWork.Branches.GetAll();
         }
 
+        [HttpGet]
+        [Route("api/GetLogo")]
+        public HttpResponseMessage ImageGet(string fileName)
+        {
+            if(fileName==null)
+            {
+                fileName = "noimage.jpg";
+            }
+
+            var filePath = HttpContext.Current.Server.MapPath("~/Images/" + fileName);
+            var ext = System.IO.Path.GetExtension(filePath);
+            var contents = System.IO.File.ReadAllBytes(filePath);
+
+            System.IO.MemoryStream ms = new System.IO.MemoryStream(contents);
+
+            var response = Request.CreateResponse(HttpStatusCode.OK);
+            response.Content = new StreamContent(ms);
+            response.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("image/" + ext);
+
+            return response;
+        }
+
+        [HttpPost]
+        [Route("api/AddBranch")]
+        public HttpResponseMessage UploadImage()
+        {
+            string imageName = null;
+            var httpRequest = HttpContext.Current.Request;
+            //Upload Image
+            var postedFile = httpRequest.Files["Image"];
+            //Create custom filename
+            imageName = new string(Path.GetFileNameWithoutExtension(postedFile.FileName).Take(10).ToArray()).Replace(" ", "-");
+            imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(postedFile.FileName);
+            var filePath = HttpContext.Current.Server.MapPath("~/Images/" + imageName);
+            postedFile.SaveAs(filePath);
+
+            //Parse double num with '.'
+            var currentCulture = System.Globalization.CultureInfo.InstalledUICulture;
+            var numberFormat = (System.Globalization.NumberFormatInfo)currentCulture.NumberFormat.Clone();
+            numberFormat.NumberDecimalSeparator = ".";
+
+            Branch branch = new Branch { Logo = imageName, Address = httpRequest["Address"], Latitude = Double.Parse(httpRequest["Latitude"],numberFormat), Longitude = Double.Parse(httpRequest["Longitude"],numberFormat) };
+            unitOfWork.Branches.Add(branch);
+            
+            foreach(Service s in unitOfWork.Services.GetAll())
+            {
+                if(s.Name == httpRequest["ServiceName"] && s.Email == httpRequest["ServiceEmail"])
+                {
+                    s.Branches.Add(branch);
+                    unitOfWork.Services.Update(s);
+                }
+            }
+
+            unitOfWork.Complete();
+
+            return Request.CreateResponse(HttpStatusCode.Created);
+        }
+
+        [Route("api/GetBranches")]
+        public IEnumerable<Branch> GetBranches(string serviceEmail)
+        {
+            IEnumerable<Service> services = unitOfWork.Services.GetAll();
+            foreach(Service s in services)
+            {
+                if (s.Email == serviceEmail)
+                {
+                    return s.Branches;
+                }
+            }
+
+            return null;
+        }
+
         // GET: api/Branches/5
         [ResponseType(typeof(Branch))]
         public IHttpActionResult GetBranch(int id)

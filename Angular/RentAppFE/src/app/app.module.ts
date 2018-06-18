@@ -17,7 +17,13 @@ import { VehicleComponent } from './vehicle/vehicle.component';
 import { AddServiceComponent } from './add-service/add-service.component';
 import { ClockComponent } from './get-clock-time/get-clock-time.component';
 import { ServiceComponentComponent } from './service-component/service-component.component';
+import {ListOfBranchesComponent} from './list-of-branches/list-of-branches.component'
 import { UploadImageComponent } from './upload-image/upload-image.component';
+import { AddBranchComponent } from './add-branch/add-branch.component';
+import { MapComponent } from './map/map.component';
+import { AgmCoreModule } from '@agm/core';
+import { ListOfVehiclesComponent } from './list-of-vehicles/list-of-vehicles.component';
+import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
 
 const Routes=[
   {
@@ -30,12 +36,28 @@ const Routes=[
   },
   {
     path: "listOfService",
-    component:ServiceComponentComponent
+    component:ServiceComponentComponent,
+    children: [
+      { path: "listOfBranches", component: ListOfBranchesComponent}
+    ]
   },
   {
     path:"addServices",
     component:AddServiceComponent
+  },
+  {
+    path: "addBranch/:name/:email",
+    component:AddBranchComponent
+  },
+  {
+    path: "vehicles/:id",
+    component:ListOfVehiclesComponent
+  },
+  {
+    path: "addVehicle/:id",
+    component:AddVehicleComponent
   }
+
 ]
 
 @NgModule({
@@ -49,7 +71,12 @@ const Routes=[
     AddServiceComponent,
     ClockComponent,
     ServiceComponentComponent,
-    UploadImageComponent
+    UploadImageComponent,
+    ListOfBranchesComponent,
+    AddBranchComponent,
+    MapComponent,
+    ListOfVehiclesComponent,
+    AddVehicleComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +84,8 @@ const Routes=[
     HttpClientModule,
     HttpClientXsrfModule,
     RouterModule.forRoot(Routes),
-    FormsModule
+    FormsModule,
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk'})
   ],
   providers: [
   ],

@@ -152,6 +152,19 @@ namespace RentApp.Controllers
             return Request.CreateResponse(HttpStatusCode.Created);
         }
 
+        [HttpGet]
+        [Route("GetVehicles")]
+        public IEnumerable<Vehicle> GetVehicles(int id)
+        {
+            Service service = unitOfWork.Services.Get(id);
+            if(service==null)
+            {
+                return null;
+            }
+
+            return service.Vehicles;
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

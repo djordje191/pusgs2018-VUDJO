@@ -5,7 +5,8 @@ import {HttpClient} from '@angular/common/http';
 import { debug } from 'util';
 import { DomSanitizer } from '@angular/platform-browser';
 import { UploadFileServiceService } from '../services/upload-file-service.service';
-
+import { ListOfBranchesComponent } from '../list-of-branches/list-of-branches.component';
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-service-component',
   templateUrl: './service-component.component.html',
@@ -14,10 +15,11 @@ import { UploadFileServiceService } from '../services/upload-file-service.servic
 })
 
 export class ServiceComponentComponent implements OnInit {
-
   public Services: any;
-
-  constructor(private servicesGetter:ListOfServicesService, private imagesGetter:UploadFileServiceService, private sanitizer: DomSanitizer) { 
+  public router:Router;
+  constructor(private servicesGetter:ListOfServicesService,
+              private imagesGetter:UploadFileServiceService,
+              private sanitizer: DomSanitizer) { 
     this.getListOfServices();
   }
 
@@ -26,6 +28,10 @@ export class ServiceComponentComponent implements OnInit {
 
   sanitize(url:string){
     return this.sanitizer.bypassSecurityTrustUrl(url);
+  }
+
+  onClick(name:string, email:string){
+    this.router.navigate(['/addBranch', name, email]);
   }
 
   getListOfServices(){

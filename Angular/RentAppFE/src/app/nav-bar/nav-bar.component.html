@@ -4,10 +4,10 @@
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">Rent a car</a>
+          <a class="navbar-brand" [routerLink]="['/listOfService']">Rent a car</a>
         </div>
         <ul class="nav navbar-nav">
-          <li class="active"><a [routerLink]="['/listOfService']">Home</a></li>
+          <li><a [routerLink]="['/listOfService']">Home</a></li>
           <li><a [routerLink]="['/addServices']">Add Service</a></li>
           <li><a href="#">Page 2</a></li>
         </ul>

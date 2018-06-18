@@ -11,6 +11,8 @@ using System.Web.Http.Description;
 using RentApp.Models.Entities;
 using RentApp.Persistance;
 using RentApp.Persistance.UnitOfWork;
+using System.Web;
+using System.IO;
 
 namespace RentApp.Controllers
 {
@@ -106,6 +108,39 @@ namespace RentApp.Controllers
             db.SaveChanges();
 
             return Ok(vehicle);
+        }
+
+        [HttpPost]
+        [Route("api/AddVehicle")]
+        public HttpResponseMessage UploadImage()
+        {
+            string imageName = null;
+            var httpRequest = HttpContext.Current.Request;
+            //Upload Image
+            var postedFile = httpRequest.Files["Image"];
+            //Create custom filename
+            imageName = new string(Path.GetFileNameWithoutExtension(postedFile.FileName).Take(10).ToArray()).Replace(" ", "-");
+            imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(postedFile.FileName);
+            var filePath = HttpContext.Current.Server.MapPath("~/Images/" + imageName);
+            postedFile.SaveAs(filePath);
+
+            TypeOfVehicle type = unitOfWork.TypesOfVehicle.Get( Int32.Parse(httpRequest["Type"]) );
+
+            Vehicle vehicle = new Vehicle { Images = imageName,
+                Model = httpRequest["Model"],
+                Manufactor = httpRequest["Manufactor"],
+                Description = httpRequest["Description"],
+                Year = Int32.Parse(httpRequest["Year"]),
+                Type = type,
+                PricePerHour= Decimal.Parse(httpRequest["Price"])
+            };
+            unitOfWork.Vehicles.Add(vehicle);
+            Service s = unitOfWork.Services.Get(Int32.Parse(httpRequest["ServiceId"]));
+            s.Vehicles.Add(vehicle);
+            unitOfWork.Services.Update(s);
+            unitOfWork.Complete();
+
+            return Request.CreateResponse(HttpStatusCode.Created);
         }
 
         protected override void Dispose(bool disposing)
