@@ -11,9 +11,12 @@ using System.Web.Http.Description;
 using RentApp.Models.Entities;
 using RentApp.Persistance;
 using RentApp.Persistance.UnitOfWork;
+using System.Web;
+using System.IO;
 
 namespace RentApp.Controllers
 {
+    [RoutePrefix("api/Services")]
     public class ServicesController : ApiController
     {
         private RADBContext db;
@@ -109,6 +112,44 @@ namespace RentApp.Controllers
             db.SaveChanges();
 
             return Ok(service);
+        }
+
+        [HttpGet]
+        [Route("GetImage")]
+        public HttpResponseMessage ImageGet(string path)
+        {            
+            var filePath = HttpContext.Current.Server.MapPath("~/Images/" + path);
+            var ext = System.IO.Path.GetExtension(filePath);
+            var contents = System.IO.File.ReadAllBytes(filePath);
+
+            System.IO.MemoryStream ms = new System.IO.MemoryStream(contents);
+
+            var response = Request.CreateResponse(HttpStatusCode.OK);
+            response.Content = new StreamContent(ms);
+            response.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("image/" + ext);
+
+            return response;
+        }
+
+        [HttpPost]
+        [Route("UploadImage")]
+        public HttpResponseMessage UploadImage()
+        {
+            string imageName = null;
+            var httpRequest = HttpContext.Current.Request;
+            //Upload Image
+            var postedFile = httpRequest.Files["Image"];
+            //Create custom filename
+            imageName = new string(Path.GetFileNameWithoutExtension(postedFile.FileName).Take(10).ToArray()).Replace(" ", "-");
+            imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(postedFile.FileName);
+            var filePath = HttpContext.Current.Server.MapPath("~/Images/" + imageName);
+            postedFile.SaveAs(filePath);
+
+            Service service = new Service { Logo = imageName, Name = httpRequest["Name"], Email = httpRequest["Email"], Description = httpRequest["Description"] };
+            unitOfWork.Services.Add(service);
+            unitOfWork.Complete();
+
+            return Request.CreateResponse(HttpStatusCode.Created);
         }
 
         protected override void Dispose(bool disposing)

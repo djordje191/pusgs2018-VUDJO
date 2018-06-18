@@ -1,23 +1,30 @@
-<h2 style="position: relative; left: 40%;">List of Services:</h2>
-<div style="position: relative; left: 20%;">
-  <div *ngFor="let service of Services">
-    <div class="container">
-      <div id="products" class="row list-group">
+<div class="row">
+  <div class="col col-md-4 col-md-push-4">
+    <legend align="center">Services</legend>
+  </div>
+</div>
+
+<div *ngFor="let service of Services">
+  <div class="row">
+    <div class="col col-md-4 col-md-push-4">
+      <div class="container">
+        <div id="products" class="row list-group">
           <div class="item  col-xs-4 col-lg-4">
-              <div class="thumbnail">
-                <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
-                  <div class="caption">
-                      <h4 class="group inner list-group-item-heading">{{service.Name}}</h4>
-                      <p class="group inner list-group-item-text"> <i>Contact: </i>{{service.Email}}</p>
-                      <p class="group inner list-group-item-text"> <i>Description: </i>{{service.Description}}</p>
-                      <div class="row">
-                        <div class="col-xs-12 col-md-6">
-                            <a class="btn btn-success" href="http://www.jquery2dotnet.com">Show Services</a>
-                        </div>
-                      </div>
+            <div class="thumbnail" align="center">
+              <img class="group list-group-image" src='http://localhost:51680/api/Services/GetImage?path={{service.Logo}}' alt="" />
+              <div class="caption">
+                <h4 class="group inner list-group-item-heading">{{service.Name}}</h4>
+                <p class="group inner list-group-item-text"> <i>Contact: </i>{{service.Email}}</p>
+                <p class="group inner list-group-item-text"> <i>Description: </i>{{service.Description}}</p>
+                <div class="row">
+                  <div class="col-xs-12 col-md-6">
+                      <a class="btn btn-success" href="http://www.jquery2dotnet.com">Show Services</a>
                   </div>
+                </div>
               </div>
+            </div>
           </div>
+        </div>
       </div>
     </div>
   </div>
