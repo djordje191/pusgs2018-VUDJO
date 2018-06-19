@@ -11,7 +11,7 @@ import { UploadFileServiceService } from '../services/upload-file-service.servic
   providers:[UploadFileServiceService]
 })
 export class AddServiceComponent implements OnInit {
-
+  userRole:string;
   imageUrl : string = "/assets/images/Default.gif"
   fileToUpload : File = null;
 
@@ -38,6 +38,15 @@ export class AddServiceComponent implements OnInit {
         console.log('done');
         Image.value=null;
       });
+  }
+  isManager(){
+    this.userRole=localStorage.getItem("role")
+    if(this.userRole=="Menager"){
+      return true;
+    }
+    else 
+    return false;
+    
   }
 
   /*onSubmit(services: Services) {

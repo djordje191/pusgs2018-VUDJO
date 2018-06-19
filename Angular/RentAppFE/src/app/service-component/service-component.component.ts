@@ -15,6 +15,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 
 export class ServiceComponentComponent implements OnInit {
+  userRole:string;
   public Services: any;
   public router:Router;
   constructor(private servicesGetter:ListOfServicesService,
@@ -54,5 +55,21 @@ export class ServiceComponentComponent implements OnInit {
       error => {
         alert("Didn't delete selected service!");
       })
+  }
+  isManager(){
+    this.userRole=localStorage.getItem("role")
+    if(this.userRole=="Manager"){
+      return true;
+    }
+    else 
+    return false;    
+  }
+  isAdmin(){
+    this.userRole=localStorage.getItem("role")
+    if(this.userRole=="Admin"){
+      return true;
+    }
+    else 
+    return false;    
   }
 }

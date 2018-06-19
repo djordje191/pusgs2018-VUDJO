@@ -35,4 +35,13 @@ export class NavBarComponent implements OnInit {
   {
     this.userRole=localStorage.getItem("role");
   }
+  isManager(){
+    this.userRole=localStorage.getItem("role")
+    if(this.userRole=="Manager"){
+      return true;
+    }
+    else 
+    return false;
+    
+  }
 }
