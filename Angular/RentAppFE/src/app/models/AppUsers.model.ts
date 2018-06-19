@@ -4,5 +4,6 @@ export class AppUsers{
     Email:String;
     BirthDay:Date;
     PersonalDocument:string;
+    Activated:boolean;
     
 }

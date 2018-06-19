@@ -14,6 +14,7 @@
           <li *ngIf="!isLoggedIn()"><a [routerLink]="['/register']"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
           <li *ngIf="!isLoggedIn()"><a [routerLink]="['/login']"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
           <li *ngIf="isLoggedIn()"><a [routerLink]="['/login']" (click)="logOut()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+          <li *ngIf="isLoggedIn()"><a [routerLink]="['/profile']">Profile</a></li>
         </ul>
       </div>
     </nav>
