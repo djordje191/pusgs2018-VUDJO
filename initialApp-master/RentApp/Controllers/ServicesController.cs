@@ -117,7 +117,12 @@ namespace RentApp.Controllers
         [HttpGet]
         [Route("GetImage")]
         public HttpResponseMessage ImageGet(string path)
-        {            
+        {
+            if (path == null)
+            {
+                path = "noimage.jpg";
+            }
+
             var filePath = HttpContext.Current.Server.MapPath("~/Images/" + path);
             var ext = System.IO.Path.GetExtension(filePath);
             var contents = System.IO.File.ReadAllBytes(filePath);

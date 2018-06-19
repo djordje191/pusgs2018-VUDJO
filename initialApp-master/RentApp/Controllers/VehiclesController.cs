@@ -119,12 +119,21 @@ namespace RentApp.Controllers
 
             TypeOfVehicle type = unitOfWork.TypesOfVehicle.Get(Int32.Parse(httpRequest["Type"]));
 
-            Vehicle vehicle = unitOfWork.Vehicles.Get(Int32.Parse(httpRequest["Id"]));
-            vehicle.Manufactor = httpRequest["Manufactor"];
-            vehicle.Model = httpRequest["Model"];
-            vehicle.Description = httpRequest["Description"];
-            vehicle.Year = Int32.Parse(httpRequest["Year"]);
-            vehicle.PricePerHour = Decimal.Parse(httpRequest["PricePerHour"]);
+            Vehicle vehicle;
+            
+            try
+            {
+                vehicle = unitOfWork.Vehicles.Get(Int32.Parse(httpRequest["Id"]));
+                vehicle.Manufactor = httpRequest["Manufactor"];
+                vehicle.Model = httpRequest["Model"];
+                vehicle.Description = httpRequest["Description"];
+                vehicle.Year = Int32.Parse(httpRequest["Year"]);
+                vehicle.PricePerHour = Decimal.Parse(httpRequest["PricePerHour"]);
+            }
+            catch
+            {
+                return null;
+            }
 
 
             unitOfWork.Vehicles.Update(vehicle);

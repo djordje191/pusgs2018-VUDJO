@@ -72,7 +72,17 @@ namespace RentApp.Controllers
             var numberFormat = (System.Globalization.NumberFormatInfo)currentCulture.NumberFormat.Clone();
             numberFormat.NumberDecimalSeparator = ".";
 
-            Branch branch = new Branch { Logo = imageName, Address = httpRequest["Address"], Latitude = Double.Parse(httpRequest["Latitude"],numberFormat), Longitude = Double.Parse(httpRequest["Longitude"],numberFormat) };
+            Branch branch;
+
+            try
+            {
+                branch = new Branch { Logo = imageName, Address = httpRequest["Address"], Latitude = Double.Parse(httpRequest["Latitude"], numberFormat), Longitude = Double.Parse(httpRequest["Longitude"], numberFormat) };
+            }
+            catch
+            {
+                return null;
+            }
+
             unitOfWork.Branches.Add(branch);
             
             foreach(Service s in unitOfWork.Services.GetAll())
