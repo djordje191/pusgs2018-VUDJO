@@ -7,13 +7,13 @@ namespace RentApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class vehicleimage : IMigrationMetadata
+    public sealed partial class DeleteService : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(vehicleimage));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(DeleteService));
         
         string IMigrationMetadata.Id
         {
-            get { return "201806180735115_vehicle image"; }
+            get { return "201806190837441_Delete Service"; }
         }
         
         string IMigrationMetadata.Source

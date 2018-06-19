@@ -17,6 +17,7 @@ using RentApp.Models;
 using RentApp.Models.Entities;
 using RentApp.Providers;
 using RentApp.Results;
+using System.IO;
 
 namespace RentApp.Controllers
 {
@@ -332,7 +333,6 @@ namespace RentApp.Controllers
             }
             return Ok();
         }
-
 
         // POST api/Account/RegisterExternal
         [OverrideAuthentication]

@@ -35,4 +35,18 @@ export class SignUpServiceService {
     return this.httpClient.post("http://localhost:51680/api/Account/Register", newMember)
 
   }
+
+  /*AddNewUser(formValues, fileToUpload:File){
+    console.log("servis usao");
+    const endpoint = 'http://localhost:51680/api/AppUser/AddUser';
+    const formData: FormData = new FormData();
+    formData.append('Image', fileToUpload, fileToUpload.name);
+    formData.append('FullName', formValues.FullName);
+    formData.append('Email', formValues.Email);
+    formData.append('DateOfBirth', formValues.DateOfBirth);
+    formData.append('Password', formValues.Password);
+
+    return this.http
+      .post(endpoint, formData);
+  }*/
 }

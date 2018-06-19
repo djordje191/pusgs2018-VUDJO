@@ -3,16 +3,16 @@ namespace RentApp.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class vehicleimage : DbMigration
+    public partial class DeleteService : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.Vehicles", "Images", c => c.String());
+            AddColumn("dbo.Services", "IsDeleted", c => c.Boolean(nullable: false));
         }
         
         public override void Down()
         {
-            DropColumn("dbo.Vehicles", "Images");
+            DropColumn("dbo.Services", "IsDeleted");
         }
     }
 }

@@ -25,6 +25,9 @@ import { AgmCoreModule } from '@agm/core';
 import { ListOfVehiclesComponent } from './list-of-vehicles/list-of-vehicles.component';
 import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
 import { EditVehicleComponent } from './edit-vehicle/edit-vehicle.component';
+import { ProfileComponent } from './profile/profile.component';
+import { TokenInterceptor } from 'src/app/interceptors/interceptors';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 const Routes=[
   {
@@ -61,6 +64,10 @@ const Routes=[
   {
     path: "editVehicle/:id",
     component:EditVehicleComponent
+  },
+  {
+    path:"profile",
+    component:ProfileComponent
   }
 
 ]
@@ -82,7 +89,8 @@ const Routes=[
     MapComponent,
     ListOfVehiclesComponent,
     AddVehicleComponent,
-    EditVehicleComponent
+    EditVehicleComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -94,6 +102,11 @@ const Routes=[
     AgmCoreModule.forRoot({apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk'})
   ],
   providers: [
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

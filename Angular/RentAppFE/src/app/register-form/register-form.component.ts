@@ -12,11 +12,23 @@ import {AppUsers} from '../models/AppUsers.model'
   providers:[SignUpServiceService]
 })
 export class RegisterFormComponent implements OnInit {
-
+  imageUrl : string = "/assets/images/Default.gif"
+  fileToUpload : File = null;
   isValid : Boolean;
   constructor(private signUpServiceService: SignUpServiceService) { }
   ;
   ngOnInit() {
+  }
+
+  handleFileInput(file: FileList){
+    this.fileToUpload = file.item(0);
+    //Show image preview
+    var reader = new FileReader();
+    reader.onload = (event:any)=>{
+      this.imageUrl = event.target.result;
+    }
+    reader.readAsDataURL(this.fileToUpload);
+    console.log("file prepared");
   }
 
   onSubmit(appUser: Users) {

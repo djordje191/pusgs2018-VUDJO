@@ -11,6 +11,9 @@ using System.Web.Http.Description;
 using RentApp.Models.Entities;
 using RentApp.Persistance;
 using RentApp.Persistance.UnitOfWork;
+using System.Web;
+using System.IO;
+using Microsoft.AspNet.Identity;
 
 namespace RentApp.Controllers
 {
@@ -76,6 +79,48 @@ namespace RentApp.Controllers
             }
 
             return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        [Route("api/AppUsers/GetCurrentUser")]
+        [HttpGet]
+        public IHttpActionResult GetCurrentUser()
+        {
+            var username = User.Identity.Name;
+            RADBContext db = new RADBContext();
+            var user = db.Users.Where(u => u.UserName == username).Include(u1 => u1.AppUser).First();
+            var appUser = user.AppUser;
+
+            return Ok(appUser);
+        }
+
+        [HttpPost]
+        [Route("api/AppUsers/EditUser")]
+        public HttpResponseMessage EditUser()
+        {
+            var httpRequest = HttpContext.Current.Request;
+
+            string imageName = null;
+            //Upload Image
+            var postedFile = httpRequest.Files["Image"];
+
+            AppUser appUser = unitOfWork.AppUsers.Get(Int32.Parse(httpRequest["AppUserId"]));
+            appUser.FullName = httpRequest["FullName"];
+            appUser.BirthDay = DateTime.Parse(httpRequest["BirthDay"]);
+            appUser.Email = httpRequest["Email"];
+
+            if (appUser.PersonalDocument == null || appUser.PersonalDocument =="")
+            {
+                imageName = new string(Path.GetFileNameWithoutExtension(postedFile.FileName).Take(10).ToArray()).Replace(" ", "-");
+                imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(postedFile.FileName);
+                var filePath = HttpContext.Current.Server.MapPath("~/Images/" + imageName);
+                postedFile.SaveAs(filePath);
+                appUser.PersonalDocument = imageName;
+            }
+
+            unitOfWork.AppUsers.Update(appUser);
+            unitOfWork.Complete();
+
+            return Request.CreateResponse(HttpStatusCode.Created);
         }
 
         // POST: api/AppUsers

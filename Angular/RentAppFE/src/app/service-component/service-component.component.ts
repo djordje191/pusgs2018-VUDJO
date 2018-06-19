@@ -44,14 +44,15 @@ export class ServiceComponentComponent implements OnInit {
       error => {
         alert("Didn't get list of users!");
       })
+    }
 
-      /*this.imagesGetter.getFile("Vehicle182414519.jpg").subscribe(
-        data=>{
-          console.log("getImage prosao");
-        },
-        error => {
-          alert("Didn't get the image!");
-        }
-      )*/
+  deleteService(id:any){
+    this.servicesGetter.DeleteService(id)
+    .subscribe(
+      data => {
+      },
+      error => {
+        alert("Didn't delete selected service!");
+      })
   }
 }

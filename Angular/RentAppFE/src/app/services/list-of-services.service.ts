@@ -27,4 +27,11 @@ export class ListOfServicesService {
     return this.httpClient.get('http://localhost:51680/api/Services');
   }
 
+  DeleteService(id:string): Observable<any> {
+      const endpoint = 'http://localhost:51680/api/Services/DeleteService';
+      const formData: FormData = new FormData();
+      formData.append('ServiceId', id);
+      return this.http.post(endpoint, formData);
+  }
+
 }
