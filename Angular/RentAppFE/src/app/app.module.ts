@@ -50,8 +50,7 @@ const Routes=[
     component:ServiceComponentComponent,
     children: [
       { path: "listOfBranches", component: ListOfBranchesComponent}
-    ],
-    canActivate:['CanAlwaysActivateGuard']
+    ]
   },
   {
     path:"addServices",
@@ -67,7 +66,7 @@ const Routes=[
   {
     path: "vehicles/:id",
     component:ListOfVehiclesComponent,
-    canActivate:[CanActivateViaAuthGuard]
+    canActivate:['CanAlwaysActivateGuard']
   },
   {
     path: "addVehicle/:id",

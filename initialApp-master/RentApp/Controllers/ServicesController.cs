@@ -13,6 +13,7 @@ using RentApp.Persistance;
 using RentApp.Persistance.UnitOfWork;
 using System.Web;
 using System.IO;
+using System.Net.Mail;
 
 namespace RentApp.Controllers
 {
@@ -142,6 +143,24 @@ namespace RentApp.Controllers
             service.IsProcessed = true;
             unitOfWork.Services.Update(service);
             unitOfWork.Complete();
+
+            if (service.IsAccepted == true)
+            {
+                //prvi parametar sendFrom,drugi sendTo
+                MailMessage mail = new MailMessage("djordjeurankar@gmail.com", "djordjeurankar@gmail.com");   
+                SmtpClient client = new SmtpClient();
+                client.Port = 587;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.UseDefaultCredentials = false;
+                client.Credentials = new NetworkCredential("djordjeurankar@gmail.com", "sifra");     // ovo treba iskoristiti i onda posalje s tog mejla na onaj gore drugi parametar
+                client.Host = "smtp.gmail.com";
+                client.EnableSsl = true;
+                mail.From= new MailAddress("djordjeurankar@gmail.com");
+                mail.To.Add("djordjeurankar@gmail.com");
+                mail.Subject = "Service approved";
+                mail.Body = "The service that you have made has been approved by our administrators! \n You are now able to add vehicles and branches!";
+                client.Send(mail);
+            }
 
             return Ok();
         }
