@@ -13,7 +13,8 @@ namespace RentApp.Models.Entities
         public string Email { get; set; }
         public string Description { get; set; }
         public bool IsDeleted { get; set; }
-
+        public bool IsAccepted { get; set; }
+        public bool IsProcessed { get; set; }
         public  virtual List<Vehicle> Vehicles { get; set; }
         public virtual List<Branch> Branches { get; set; }
 

@@ -83,7 +83,7 @@ namespace RentApp.Migrations
 
             //var b1 = new Branch() { Address = "Sime Solaje 24", Latitude = 123424.2, Longitude = 123232.4 };
 
-            //var s1 = new Service() { Name = "Zastava rent", Email = "kontakt@zastava.rs", Description = "Nepobedivi",Branches = new List<Branch>() { b1},Vehicles=new List<Vehicle>() { v1,v2}  };
+            //var s1 = new Service() { Name = "Zastava rent", Email = "kontakt@zastava.rs", Description = "Nepobedivi", Branches = new List<Branch>() { b1 }, Vehicles = new List<Vehicle>() { v1, v2 } };
 
             //context.Services.Add(s1);
 

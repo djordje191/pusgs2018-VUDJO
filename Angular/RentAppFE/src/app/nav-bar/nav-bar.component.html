@@ -7,9 +7,10 @@
           <a class="navbar-brand" [routerLink]="['/listOfService']">Rent a car</a>
         </div>
         <ul class="nav navbar-nav">
-          <li><a [routerLink]="['/listOfService']">Home</a></li>
-          <li *ngIf="isManager()"><a [routerLink]="['/addServices']">Add Service</a></li>
+          <li><a [routerLink]="['/listOfService']">Home</a></li> 
+          <li><a [routerLink]="['/addServices']">Add Service</a></li> <!--*ngIf="isManager()"-->
           <li><a [routerLink]="['/addTypeOfVehicle']">Add Type Of Vehicle</a></li>
+          <li><a [routerLink]="['/acceptAppUsers']">Accept Users</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li *ngIf="!isLoggedIn()"><a [routerLink]="['/register']"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>

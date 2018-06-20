@@ -39,4 +39,8 @@ export class ListOfBranchesService {
   getListOfBranches(id:string): Observable<any> {
     return this.httpClient.get('http://localhost:51680/api/GetBranches?serviceId='+id);
   }
+
+  getAllBranches(): Observable<any> {
+    return this.httpClient.get('http://localhost:51680/api/GetAllBranches');
+  }
 }

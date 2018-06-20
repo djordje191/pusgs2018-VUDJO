@@ -43,6 +43,26 @@ namespace RentApp.Controllers
             return Ok(rent);
         }
 
+        [HttpGet]
+        [Route("api/RentVehicle/Rent")]
+        public IHttpActionResult CreateRent(DateTime EndDate, int StartBranchId, int EndBranchId, int VehicleId, int UserId)
+        {
+            Branch startBranch = unitOfWork.Branches.Get(StartBranchId);
+            Branch endBranch   = unitOfWork.Branches.Get(EndBranchId);
+            Vehicle vehicle = unitOfWork.Vehicles.Get(VehicleId);
+            AppUser user = unitOfWork.AppUsers.Get(UserId);
+
+            Rent rent = new Rent() { Start = DateTime.Now, End = EndDate, Branch = startBranch, ReturnBranch = endBranch, Vehicle = vehicle};
+            unitOfWork.Rents.Add(rent);
+
+            user.Rents.Add(rent);
+            unitOfWork.AppUsers.Update(user);
+
+            unitOfWork.Complete();
+
+            return Ok();
+        }
+
         // PUT: api/Rents/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutRent(int id, Rent rent)

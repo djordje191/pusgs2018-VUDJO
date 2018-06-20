@@ -11,6 +11,7 @@ namespace RentApp.Models.Entities
         public DateTime Start { get; set; }
         public DateTime? End { get; set; }
         public virtual Branch Branch { get; set; }
+        public virtual Branch ReturnBranch { get; set; }
         public virtual Vehicle Vehicle { get; set; }
 
     }

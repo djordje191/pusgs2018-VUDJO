@@ -304,9 +304,9 @@
     <Compile Include="Migrations\201806070945104_added Comments.Designer.cs">
       <DependentUpon>201806070945104_added Comments.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806190837441_Delete Service.cs" />
-    <Compile Include="Migrations\201806190837441_Delete Service.Designer.cs">
-      <DependentUpon>201806190837441_Delete Service.cs</DependentUpon>
+    <Compile Include="Migrations\201806201048109_Ispravak.cs" />
+    <Compile Include="Migrations\201806201048109_Ispravak.Designer.cs">
+      <DependentUpon>201806201048109_Ispravak.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -439,8 +439,8 @@
     <EmbeddedResource Include="Migrations\201806070945104_added Comments.resx">
       <DependentUpon>201806070945104_added Comments.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806190837441_Delete Service.resx">
-      <DependentUpon>201806190837441_Delete Service.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201806201048109_Ispravak.resx">
+      <DependentUpon>201806201048109_Ispravak.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

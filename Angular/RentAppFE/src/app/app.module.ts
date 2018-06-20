@@ -29,6 +29,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { TokenInterceptor } from 'src/app/interceptors/interceptors';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AddTypeOfVehicleComponent } from './add-type-of-vehicle/add-type-of-vehicle.component';
+import { AcceptAppUserComponent } from './accept-app-user/accept-app-user.component';
+import { RentVehicleComponent } from './rent-vehicle/rent-vehicle.component';
 
 const Routes=[
   {
@@ -73,6 +75,14 @@ const Routes=[
   {
     path:"addTypeOfVehicle",
     component:AddTypeOfVehicleComponent
+  },
+  {
+    path:"acceptAppUsers",
+    component:AcceptAppUserComponent
+  },
+  {
+    path:"rentVehicle/:serviceId/:vehicleId",
+    component:RentVehicleComponent
   }
 
 ]
@@ -96,7 +106,9 @@ const Routes=[
     AddVehicleComponent,
     EditVehicleComponent,
     ProfileComponent,
-    AddTypeOfVehicleComponent
+    AddTypeOfVehicleComponent,
+    AcceptAppUserComponent,
+    RentVehicleComponent
   ],
   imports: [
     BrowserModule,

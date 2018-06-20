@@ -1,0 +1,24 @@
+<div *ngFor="let user of appUsers">
+  <div class="row">
+    <div class="col col-md-4 col-md-push-4">
+      <div class="container">
+        <div id="products" class="row list-group">
+          <div class="item  col-xs-4 col-lg-4">
+            <div class="thumbnail" align="center">
+              <img class="group list-group-image" src='http://localhost:51680/api/Services/GetImage?path={{user.PersonalDocument}}' alt="" />
+              <div class="caption">
+                <p class="group inner list-group-item-text"> <i>Email: </i>{{user.Email}}</p>
+                <button type="submit" class="btn btn-success" (click)="onSubmit(user.Id,true)">
+                  <span class="glyphicon glyphicon-ok" ></span> Accept
+                </button>
+                <button type="submit" class="btn btn-danger" (click)="onSubmit(user.Id,false)">
+                  <span class="glyphicon glyphicon-remove" ></span> Decline
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
