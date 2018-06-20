@@ -101,6 +101,13 @@ namespace RentApp.Controllers
             return null;
         }
 
+        [Route("api/GetAllBranches")]
+        public IEnumerable<Branch> GetAllBranches(int serviceId)
+        {
+            IEnumerable<Branch> branches = unitOfWork.Branches.GetAll();
+            return branches;
+        }
+
         // GET: api/Branches/5
         [ResponseType(typeof(Branch))]
         public IHttpActionResult GetBranch(int id)

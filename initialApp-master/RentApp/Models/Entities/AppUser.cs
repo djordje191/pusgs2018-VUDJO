@@ -12,6 +12,8 @@ namespace RentApp.Models.Entities
         public string Email { get; set; }
         public DateTime? BirthDay { get; set; }
         public string PersonalDocument { get; set; }
+        public bool IsAccepted { get; set; }
+        public bool IsProcessed { get; set; }
         public virtual List<Rent> Rents { get; set; }
     }
 }

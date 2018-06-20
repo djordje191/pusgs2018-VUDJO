@@ -1,0 +1,56 @@
+<form #f="ngForm" (ngSubmit)="onSubmit(f.value)" class="form-horizontal">
+    <fieldset>
+    
+    <!-- Form Name -->
+    <div class="row">
+      <div class="col col-md-4 col-md-push-4">
+        <legend align="center">Rent a Car</legend>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col col-md-4 col-md-push-4">
+        <div class="form-group">
+          <label for="DateBirth">Date of Return</label>
+          <input type="date" min="today" class="form-control" name="EndDate" ngModel required #EndDate="ngModel"/>
+        </div>
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col col-md-4 col-md-push-4">
+          <agm-map [latitude]="mapInfo.centerLat" [longitude]="mapInfo.centerLong" [zoom]="18" (mapClick)="placeMarker($event)">
+            <div *ngFor="let branch of Branches">
+              <!-- Postavljamo markere -->
+              <agm-marker [latitude]="branch.Latitude" [longitude]="branch.Longitude" [title]="mapInfo.title"
+              [label]="mapInfo.label">
+          
+                <!-- Svakom markeru dodajemo info-window (Nije obavezno!)-->
+                <agm-info-window [latitude]="branch.Latitude" [longitude]="branch.Longitude" >
+                  <!-- U info-window stavljamo html -->
+                  <span style="font-size: 16px;font-family:'Times New Roman'">{{branch.Address}}</span>
+                  <br>
+                  <br>
+                  <a type="submit" class="btn btn-primary" (click)="SetStartBranch(branch.Id)">Set Start Branch</a>
+                  <p>  </p>
+                  <a type="submit" class="btn btn-warning" (click)="SetEndBranch(branch.Id)">Set End Branch</a>
+                </agm-info-window>
+              </agm-marker>
+            </div>
+          </agm-map>
+      </div>
+    </div>
+    
+    <br>
+    <br>
+
+    <!-- Button -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="addServiceButton"></label>
+      <div class="col-md-4">
+        <button type="submit" id="addServiceButton" name="addServiceButton" class="btn btn-success" [disabled]="!f.valid || startBranch==null || endBranch==null">Rent</button>
+      </div>
+    </div>
+    
+    </fieldset>
+    </form>

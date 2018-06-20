@@ -14,6 +14,7 @@ using RentApp.Persistance.UnitOfWork;
 using System.Web;
 using System.IO;
 using Microsoft.AspNet.Identity;
+using System.Collections;
 
 namespace RentApp.Controllers
 {
@@ -91,6 +92,37 @@ namespace RentApp.Controllers
             var appUser = user.AppUser;
 
             return Ok(appUser);
+        }
+
+        [Route("api/AppUsers/GetAppUsers")]
+        [HttpGet]
+        public IHttpActionResult GetNewUsers()
+        {
+            IEnumerable<AppUser> users = unitOfWork.AppUsers.GetAll();
+            List<AppUser> newUsers = new List<AppUser>();
+
+            foreach(AppUser u in users)
+            {
+                if(u.IsProcessed==false && u.PersonalDocument!=null)
+                {
+                    newUsers.Add(u);
+                }
+            }
+
+            return Ok(newUsers);
+        }
+
+        [Route("api/AppUsers/AcceptUser")]
+        [HttpGet]
+        public IHttpActionResult AppUserConfirmation(int id, bool isAccepted)
+        {
+            AppUser user = unitOfWork.AppUsers.Get(id);
+            user.IsAccepted = isAccepted;
+            user.IsProcessed = true;
+            unitOfWork.AppUsers.Update(user);
+            unitOfWork.Complete();
+
+            return Ok();
         }
 
         [HttpPost]
