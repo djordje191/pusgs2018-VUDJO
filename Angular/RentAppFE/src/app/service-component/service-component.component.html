@@ -5,7 +5,7 @@
 </div>
 
 <div *ngFor="let service of Services">
-  <div *ngIf="service.IsDeleted!=true" class="row">
+  <div *ngIf="service.IsDeleted!=true && service.IsAccepted" class="row">
     <div class="col col-md-4 col-md-push-4">
       <div class="container">
         <div id="products" class="row list-group">

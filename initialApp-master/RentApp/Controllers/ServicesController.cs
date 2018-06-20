@@ -114,6 +114,38 @@ namespace RentApp.Controllers
             return Ok(service);
         }
 
+        [AllowAnonymous]
+        [Route("GetServices")]
+        [HttpGet]
+        public IHttpActionResult GetNewServices()
+        {
+            IEnumerable<Service> services = unitOfWork.Services.GetAll();
+            List<Service> newServices = new List<Service>();
+
+            foreach (Service s in services)
+            {
+                if (s.IsProcessed == false)
+                {
+                    newServices.Add(s);
+                }
+            }
+
+            return Ok(newServices);
+        }
+
+        [Route("AproveService")]
+        [HttpGet]
+        public IHttpActionResult serviceConfirmation(int id, bool isAccepted)
+        {
+            Service service = unitOfWork.Services.Get(id);
+            service.IsAccepted = isAccepted;
+            service.IsProcessed = true;
+            unitOfWork.Services.Update(service);
+            unitOfWork.Complete();
+
+            return Ok();
+        }
+
         [HttpGet]
         [Route("GetImage")]
         public HttpResponseMessage ImageGet(string path)

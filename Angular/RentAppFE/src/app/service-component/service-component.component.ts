@@ -25,6 +25,7 @@ export class ServiceComponentComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.Services);
   }
 
   sanitize(url:string){
@@ -72,4 +73,5 @@ export class ServiceComponentComponent implements OnInit {
     else 
     return false;    
   }
+  
 }

@@ -1,0 +1,24 @@
+<div *ngFor="let service of services">
+  <div class="row">
+    <div class="col col-md-4 col-md-push-4">
+      <div class="container">
+        <div id="products" class="row list-group">
+          <div class="item  col-xs-4 col-lg-4">
+            <div class="thumbnail" align="center">
+              <div class="caption">
+                <p class="group inner list-group-item-text"> <i>Name: </i>{{service.Name}}</p>
+                <p class="group inner list-group-item-text"> <i>Email: </i>{{service.Email}}</p>
+                <button type="submit" class="btn btn-success" (click)="onSubmit(service.Id,true)">
+                  <span class="glyphicon glyphicon-ok" ></span> Accept
+                </button>
+                <button type="submit" class="btn btn-danger" (click)="onSubmit(service.Id,false)">
+                  <span class="glyphicon glyphicon-remove" ></span> Decline
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

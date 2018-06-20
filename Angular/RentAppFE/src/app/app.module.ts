@@ -31,58 +31,77 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AddTypeOfVehicleComponent } from './add-type-of-vehicle/add-type-of-vehicle.component';
 import { AcceptAppUserComponent } from './accept-app-user/accept-app-user.component';
 import { RentVehicleComponent } from './rent-vehicle/rent-vehicle.component';
+import { AproveServiceComponent } from 'src/app/aprove-service/aprove-service.component';
+import { CanActivateViaAuthGuard } from 'src/app/guard/auth.guard';
 
 const Routes=[
   {
     path: "register",
-    component: RegisterFormComponent
+    component: RegisterFormComponent,
+    canActivate: ['CanAlwaysActivateGuard']
   },
   {
     path: "login",
-    component: LoginFormComponent
+    component: LoginFormComponent,
+    canActivate: ['CanAlwaysActivateGuard']
   },
   {
     path: "listOfService",
     component:ServiceComponentComponent,
     children: [
       { path: "listOfBranches", component: ListOfBranchesComponent}
-    ]
+    ],
+    canActivate:['CanAlwaysActivateGuard']
   },
   {
     path:"addServices",
-    component:AddServiceComponent
+    component:AddServiceComponent,
+    canActivate:[CanActivateViaAuthGuard]
   },
   {
     path: "addBranch/:name/:email",
-    component:AddBranchComponent
+    component:AddBranchComponent,
+    canActivate:[CanActivateViaAuthGuard]
+
   },
   {
     path: "vehicles/:id",
-    component:ListOfVehiclesComponent
+    component:ListOfVehiclesComponent,
+    canActivate:[CanActivateViaAuthGuard]
   },
   {
     path: "addVehicle/:id",
-    component:AddVehicleComponent
+    component:AddVehicleComponent,
+    canActivate:[CanActivateViaAuthGuard]
   },
   {
     path: "editVehicle/:id",
-    component:EditVehicleComponent
+    component:EditVehicleComponent,
+    canActivate:[CanActivateViaAuthGuard]
   },
   {
     path:"profile",
-    component:ProfileComponent
+    component:ProfileComponent,
+    canActivate:['CanAppUserActivateGuard']
   },
   {
     path:"addTypeOfVehicle",
-    component:AddTypeOfVehicleComponent
+    component:AddTypeOfVehicleComponent,
+    canActivate:[CanActivateViaAuthGuard]
   },
   {
     path:"acceptAppUsers",
-    component:AcceptAppUserComponent
+    component:AcceptAppUserComponent,
+    canActivate:[CanActivateViaAuthGuard]
   },
   {
     path:"rentVehicle/:serviceId/:vehicleId",
     component:RentVehicleComponent
+  },
+  {
+    path:"aproveService",
+    component:AproveServiceComponent,
+    canActivate:[CanActivateViaAuthGuard]
   }
 
 ]
@@ -108,7 +127,9 @@ const Routes=[
     ProfileComponent,
     AddTypeOfVehicleComponent,
     AcceptAppUserComponent,
-    RentVehicleComponent
+    RentVehicleComponent,
+    AproveServiceComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -119,11 +140,23 @@ const Routes=[
     FormsModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk'})
   ],
-  providers: [
+  providers: [CanActivateViaAuthGuard,
     {
       provide : HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
+    },
+    {
+      provide:'CanAlwaysActivateGuard',
+      useValue: () => {
+        return true;
+      }
+    },
+    {
+      provide:'CanAppUserActivateGuard',
+      useValue: () => { if(localStorage.role !=undefined)
+        return true;
+      }
     }
   ],
   bootstrap: [AppComponent]
