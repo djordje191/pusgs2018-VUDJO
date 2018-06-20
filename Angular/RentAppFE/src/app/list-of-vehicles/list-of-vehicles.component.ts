@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ListOfVehiclesService } from '../services/list-of-vehicles.service';
 import { AppUserServiceService } from '../services/app-user-service.service';
 import { ProfileService } from '../services/profile.service';
+import { RentCarService } from 'src/app/services/rent-car.service';
 
 @Component({
   selector: 'app-list-of-vehicles',
@@ -15,16 +16,19 @@ export class ListOfVehiclesComponent implements OnInit {
   private Vehicles:any;
   private user:any;
   userRole:string;
+  private canRent:boolean;
   
   constructor(private route : ActivatedRoute,
               private vehicleService: ListOfVehiclesService,
-              private currentUserService:ProfileService) {
+              private currentUserService:ProfileService,
+              private rentService:RentCarService) {
     this.route.params.subscribe(params=> this.args=params);
    }
 
   ngOnInit() {
     this.getListOfVehicles();
     this.getCurrentUser();
+    this.isRentable();
   }
 
   getListOfVehicles(){
@@ -66,5 +70,17 @@ export class ListOfVehiclesComponent implements OnInit {
       }
       
       return false;
+    }
+
+    isRentable()
+    {
+      this.rentService.checkRent(this.args.id)
+      .subscribe(
+        data => {
+           this.canRent = data;
+        },
+        error => {
+          alert("rentService.checkRent(id) error!");
+        })
     }
 }

@@ -17,4 +17,8 @@ export class RentCarService {
   createRent(EndDate, StartBranchId, EndBranchId, VehicleId, UserId ): Observable<any> {
     return this.httpClient.get('http://localhost:51680/api/RentVehicle/Rent?EndDate='+EndDate+'&StartBranchId='+StartBranchId+'&EndBranchId='+EndBranchId+'&VehicleId='+VehicleId+'&UserId='+UserId);
   }
+
+  checkRent(ServiceId): Observable<any> {
+    return this.httpClient.get('http://localhost:51680/api/RentVehicle/CheckRentForVehicle?ServiceId='+ServiceId);
+  }
 }

@@ -44,6 +44,34 @@ namespace RentApp.Controllers
         }
 
         [HttpGet]
+        [Route("api/RentVehicle/CheckRentForVehicle")]
+        public IHttpActionResult CheckRent(int ServiceId)
+        {
+            IEnumerable<Rent> rents = unitOfWork.Rents.GetAll();
+            Service s = unitOfWork.Services.Get(ServiceId);
+            IEnumerable<Vehicle> vehicles = s.Vehicles;
+
+            foreach(Vehicle v in vehicles)
+            {
+                foreach (Rent r in rents)
+                {
+                    if (r.Vehicle.id == v.id)
+                    {
+                        if (DateTime.Compare(DateTime.Now, r.End.Value) <= 0)
+                        {
+                            v.Unavailable = true;
+                            unitOfWork.Vehicles.Update(v);
+                            unitOfWork.Complete();
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return Ok();
+        }
+
+        [HttpGet]
         [Route("api/RentVehicle/Rent")]
         public IHttpActionResult CreateRent(DateTime EndDate, int StartBranchId, int EndBranchId, int VehicleId, int UserId)
         {
