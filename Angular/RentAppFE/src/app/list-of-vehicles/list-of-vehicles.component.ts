@@ -11,7 +11,8 @@ import { ListOfVehiclesService } from '../services/list-of-vehicles.service';
 export class ListOfVehiclesComponent implements OnInit {
   public args:any;
   private Vehicles:any;
-
+  userRole:string;
+  
   constructor(private route : ActivatedRoute, private vehicleService: ListOfVehiclesService) {
     this.route.params.subscribe(params=> this.args=params);
    }
@@ -29,5 +30,14 @@ export class ListOfVehiclesComponent implements OnInit {
       error => {
         alert("Didn't get list of vehicles!");
       })
+    }
+    isManager(){
+      this.userRole=localStorage.getItem("role")
+      if(this.userRole=="Manager"){
+        return true;
+      }
+      else 
+      return false;
+      
     }
 }

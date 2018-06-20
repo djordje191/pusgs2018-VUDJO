@@ -31,6 +31,32 @@ namespace RentApp.Controllers
             return unitOfWork.TypesOfVehicle.GetAll();
         }
 
+        [HttpGet]
+        [Route("api/AddVehicleType")]
+        public IHttpActionResult PutTypeOfVehicle(string type)
+        {
+            IEnumerable<TypeOfVehicle> types = unitOfWork.TypesOfVehicle.GetAll();
+            
+            if(type=="undefined")
+            {
+                return Ok();
+            }
+
+            foreach (TypeOfVehicle t in types)
+            {
+                if(t.Name==type)
+                {
+                    return StatusCode(HttpStatusCode.NoContent);
+                }
+            }
+
+            TypeOfVehicle newType = new TypeOfVehicle() { Name = type };
+            unitOfWork.TypesOfVehicle.Add(newType);
+            unitOfWork.Complete();
+
+            return Ok();
+        }
+
         // GET: api/TypeOfVehicles/5
         [ResponseType(typeof(TypeOfVehicle))]
         public IHttpActionResult GetTypeOfVehicle(int id)

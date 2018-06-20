@@ -28,6 +28,7 @@ import { EditVehicleComponent } from './edit-vehicle/edit-vehicle.component';
 import { ProfileComponent } from './profile/profile.component';
 import { TokenInterceptor } from 'src/app/interceptors/interceptors';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AddTypeOfVehicleComponent } from './add-type-of-vehicle/add-type-of-vehicle.component';
 
 const Routes=[
   {
@@ -68,6 +69,10 @@ const Routes=[
   {
     path:"profile",
     component:ProfileComponent
+  },
+  {
+    path:"addTypeOfVehicle",
+    component:AddTypeOfVehicleComponent
   }
 
 ]
@@ -90,7 +95,8 @@ const Routes=[
     ListOfVehiclesComponent,
     AddVehicleComponent,
     EditVehicleComponent,
-    ProfileComponent
+    ProfileComponent,
+    AddTypeOfVehicleComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,35 @@
+<form #f="ngForm" (ngSubmit)="onSubmit(f.value)" class="form-horizontal">
+    <fieldset>
+    
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="textinput">Add Type Of Vehicle</label>  
+      <div class="col-md-4">
+      <input id="Type" name="Type" type="text" placeholder="" class="form-control input-md" ngModel required #Type="ngModel">      
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col col-lg-4 col-lg-push-4">
+        <div *ngIf="Type.errors && (Type.dirty || Type.touched)"
+              class="alert alert-danger">  
+            <div [hidden]="!Type.errors.required">
+              ServiceName is required!
+            </div>
+            <div [hidden]="!Type.errors.pattern">
+              ServiceName form is invalid
+            </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Button -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="addServiceButton"></label>
+      <div class="col-md-4">
+        <button type="submit" id="addServiceButton" name="addServiceButton" class="btn btn-success" [disabled]="!f.valid">Add Type</button>
+      </div>
+    </div>
+    
+    </fieldset>
+    </form>

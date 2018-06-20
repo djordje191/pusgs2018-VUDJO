@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
       <div class="col col-md-3 col-md-push-4">
-        <h3><a [routerLink]="['/addVehicle',args.id]">Add New Vehicle...</a></h3>
+        <h3><a *ngIf="isManager()" [routerLink]="['/addVehicle',args.id]">Add New Vehicle...</a></h3>
       </div>
   </div>
 </div>
@@ -22,7 +22,7 @@
                   <button class="group inner list-group-item-heading" type="submit" id="rentVehicleButton" name="rentVehicleButton" class="btn btn-success" >Rent Vehicle</button>
                   <br>
                   <br>
-                  <button class="group inner list-group-item-heading" type="submit" id="rentVehicleButton" name="rentVehicleButton" class="btn btn-success" [routerLink]="['/editVehicle',vehicle.id]" >Edit Vehicle</button>
+                  <button *ngIf="isManager()" class="group inner list-group-item-heading" type="submit" id="rentVehicleButton" name="rentVehicleButton" class="btn btn-success" [routerLink]="['/editVehicle',vehicle.id]" >Edit Vehicle</button>
                 </div>
               </div>
             </div>
