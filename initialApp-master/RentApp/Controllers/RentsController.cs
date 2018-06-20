@@ -64,6 +64,12 @@ namespace RentApp.Controllers
                             unitOfWork.Complete();
                             break;
                         }
+                        else
+                        {
+                            v.Unavailable = false;
+                            unitOfWork.Vehicles.Update(v);
+                            unitOfWork.Complete();
+                        }
                     }
                 }
             }
