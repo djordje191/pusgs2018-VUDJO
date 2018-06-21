@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-      <div class="col col-md-3 col-md-push-4">
+      <div class="col col-md-3 col-md-push-5">
         <h3><a [routerLink]="['/addVehicle',args.id]">Add New Vehicle...</a></h3> <!--*ngIf="isManager()"-->
       </div>
   </div>
@@ -10,7 +10,7 @@
   
 <div *ngFor="let vehicle of Vehicles">
   <div class="row">
-    <div class="col col-md-3 col-md-push-4">
+    <div class="col col-md-3 col-md-push-5">
       <div class="container">
         <div id="products" class="row list-group">
           <div class="item  col-xs-3 col-lg-3">
@@ -40,7 +40,7 @@
 
   <div *ngFor="let vehicle of Vehicles2">
     <div class="row">
-      <div class="col col-md-3 col-md-push-4">
+      <div class="col col-md-3 col-md-push-5">
         <div class="container">
           <div id="products" class="row list-group">
             <div class="item  col-xs-3 col-lg-3">
@@ -67,7 +67,7 @@
 </div>
 
 <div class="row">
-  <div class="col col-md-3 col-md-push-4">
+  <div class="col col-md-3 col-md-push-5">
     <div class="container">
       <p>Filtering:</p>
       <textarea class="form-control" style="width:25%" [ngModel]="data" (ngModelChange)="doSomething($event)"></textarea>
@@ -81,10 +81,15 @@
   </div>
 </div>
 
-<table align="center">
-  <tr>
-    <td align="center"><a style="font-size: 40px;text-align:center" (click)="setPageNumber(1)">1</a></td>
-    <td align="center"><a style="font-size: 40px;text-align:center" (click)="setPageNumber(2)">2</a></td>
-    <td align="center"><a style="font-size: 40px;text-align:center" (click)="incPageNumber()">Next Page</a></td>
-  </tr>
-</table>
+<div class="row">
+  <div class="col col-md-2 col-md-push-5">
+    <table align="center">
+      <tr style="border:solid 1px gray">
+        <td align="center"><a style="font-size: 20px;" (click)="setPageNumber(1)">1, </a></td>
+        <td align="center"><a style="font-size: 20px;" (click)="setPageNumber(2)">2, </a></td>
+        <td align="center"><a style="font-size: 20px;" (click)="incPageNumber()"> Next Page</a></td>
+      </tr>
+    </table>
+    <br><br>
+  </div>
+</div>
