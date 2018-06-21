@@ -7,6 +7,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { UploadFileServiceService } from '../services/upload-file-service.service';
 import { ListOfBranchesComponent } from '../list-of-branches/list-of-branches.component';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ProfileService } from '../services/profile.service';
 @Component({
   selector: 'app-service-component',
   templateUrl: './service-component.component.html',
@@ -17,15 +18,31 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class ServiceComponentComponent implements OnInit {
   userRole:string;
   public Services: any;
+  public User:any;
   public router:Router;
+  public sum : number;
+
   constructor(private servicesGetter:ListOfServicesService,
               private imagesGetter:UploadFileServiceService,
+              private profileService:ProfileService,
               private sanitizer: DomSanitizer) { 
     this.getListOfServices();
   }
 
   ngOnInit() {
     console.log(this.Services);
+    this.getUserInfo();
+  }
+
+  getUserInfo(){
+    this.profileService.getMethodProfile()
+    .subscribe(
+      data => {
+        this.User=data;
+      },
+      error => {
+
+      })
   }
 
   sanitize(url:string){
@@ -41,6 +58,7 @@ export class ServiceComponentComponent implements OnInit {
     .subscribe(
       data => {
         this.Services=data;
+        console.log('SERVISI');
         console.log(this.Services);
       },
       error => {
@@ -73,5 +91,55 @@ export class ServiceComponentComponent implements OnInit {
     else 
     return false;    
   }
+
+  positiveComment(formValue,serviceId)
+  {
+    this.servicesGetter.giveComment(this.User.Id, serviceId, formValue.Comment, false)
+    .subscribe(
+      data => {
+      },
+      error => {
+        alert("Didn't get list of users!");
+      })
+  }
   
+  canComment(comments):boolean{
+    for(let c of comments)
+    {
+      if(c.UserKey==this.User.Id){
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  getRating(comments):number{
+    this.sum=0;
+    for(let c of comments)
+    {
+      if(c.IsNegative)
+      {
+        this.sum = this.sum - 1;
+      }
+      else
+      {
+        this.sum = this.sum + 1;
+      }
+    }
+
+    return this.sum;
+  }
+
+  negativeComment(formValue,serviceId)
+  {
+    this.servicesGetter.giveComment(this.User.Id, serviceId, formValue.Comment, true)
+    .subscribe(
+      data => {
+      },
+      error => {
+        alert("Didn't get list of users!");
+      })
+  }
+
 }

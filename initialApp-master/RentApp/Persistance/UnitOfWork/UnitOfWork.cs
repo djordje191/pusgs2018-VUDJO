@@ -24,6 +24,8 @@ namespace RentApp.Persistance.UnitOfWork
         public ITypeOfVehicleRepository TypesOfVehicle { get; set; }
         [Dependency]
         public IVehicleRepository Vehicles { get; set; }
+        [Dependency]
+        public ICommentRepository Comments { get; set; }
 
         public UnitOfWork(DbContext context)
         {

@@ -15,5 +15,6 @@ namespace RentApp.Models.Entities
         public bool IsAccepted { get; set; }
         public bool IsProcessed { get; set; }
         public virtual List<Rent> Rents { get; set; }
+        public virtual List<Comment> Comments { get; set; }
     }
 }

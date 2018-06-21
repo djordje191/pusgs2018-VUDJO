@@ -17,7 +17,6 @@ namespace RentApp.Models.Entities
         public bool IsProcessed { get; set; }
         public  virtual List<Vehicle> Vehicles { get; set; }
         public virtual List<Branch> Branches { get; set; }
-
-
+        public virtual List<Comment> Comments { get; set; }
     }
 }

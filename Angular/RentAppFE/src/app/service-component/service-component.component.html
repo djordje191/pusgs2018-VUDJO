@@ -29,6 +29,35 @@
                     <br>
                     <br>
                     <app-list-of-branches [serviceId]=service.Id></app-list-of-branches>
+
+                    <!--KOMENTARI-->
+                    <div>
+                      <div *ngFor="let comment of service.Comments">
+                        <div *ngIf="comment.IsNegative">
+                          <div>
+                            <p class="text-danger">{{comment.Content}}, {{comment.PostedDate | date: 'dd/MM/yyyy'}} <span class="glyphicon glyphicon-thumbs-down"></span></p>
+                          </div>
+                        </div>
+                        <div *ngIf="!comment.IsNegative">
+                          <div>
+                            <p class="text-success">{{comment.Content}}, {{comment.PostedDate | date: 'dd/MM/yyyy'}} <span class="glyphicon glyphicon-thumbs-up"></span></p>
+                          </div>
+                        </div>
+                      </div>
+                      <div>
+                        Rating: {{getRating(service.Comments)}}
+                      </div>
+                      <div class="col-md-8 col-md-push-2" *ngIf="canComment(service.Comments)">     
+                          <form #f1="ngForm">
+                              <fieldset>                
+                                <textarea class="form-control" id="Comment" name="Comment" ngModel required #Comment="ngModel"></textarea>
+                                <br>
+                                <button type="submit" (click)="positiveComment(f1.value,service.Id)" id="positiveComment" name="positiveComment" class="btn btn-success" [disabled]="!f1.valid"><span class="glyphicon glyphicon-thumbs-up"></span></button>
+                                <button type="submit" (click)="negativeComment(f1.value,service.Id)" id="negativeComment" name="negativeComment" class="btn btn-danger"  [disabled]="!f1.valid"><span class="glyphicon glyphicon-thumbs-down"></span></button>
+                              </fieldset>
+                          </form>
+                      </div>
+                    </div>
                 </div>
               </div>
             </div>

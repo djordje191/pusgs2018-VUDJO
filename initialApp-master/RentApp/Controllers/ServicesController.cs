@@ -134,29 +134,48 @@ namespace RentApp.Controllers
             return Ok(newServices);
         }
 
+        [Route("GiveComment")]
+        [HttpGet]
+        public IHttpActionResult GiveComment(int userId, int serviceId, string content, bool isNegative)
+        {
+            Service service = unitOfWork.Services.Get(serviceId);
+            AppUser appUser = unitOfWork.AppUsers.Get(userId);
+
+            Comment comment = new Comment { Content = content, IsNegative = isNegative, PostedDate = DateTime.Now, UserKey=appUser.Id};
+            service.Comments.Add(comment);
+            appUser.Comments.Add(comment);
+            unitOfWork.Comments.Add(comment);
+            unitOfWork.Services.Update(service);
+            unitOfWork.AppUsers.Update(appUser);
+            unitOfWork.Complete();
+            
+            return Ok();
+        }
+
         [Route("AproveService")]
         [HttpGet]
         public IHttpActionResult serviceConfirmation(int id, bool isAccepted)
         {
             Service service = unitOfWork.Services.Get(id);
+            AppUser au = new AppUser();
             service.IsAccepted = isAccepted;
             service.IsProcessed = true;
             unitOfWork.Services.Update(service);
             unitOfWork.Complete();
-
+            
             if (service.IsAccepted == true)
             {
                 //prvi parametar sendFrom,drugi sendTo
-                MailMessage mail = new MailMessage("djordjeurankar@gmail.com", "djordjeurankar@gmail.com");   
+                MailMessage mail = new MailMessage("foksfak@gmail.com", "foksfak@gmail.com");   
                 SmtpClient client = new SmtpClient();
                 client.Port = 587;
                 client.DeliveryMethod = SmtpDeliveryMethod.Network;
                 client.UseDefaultCredentials = false;
-                client.Credentials = new NetworkCredential("djordjeurankar@gmail.com", "sifra");     // ovo treba iskoristiti i onda posalje s tog mejla na onaj gore drugi parametar
+                client.Credentials = new NetworkCredential("foksfak@gmail.com", "nadvoznjak");
                 client.Host = "smtp.gmail.com";
                 client.EnableSsl = true;
-                mail.From= new MailAddress("djordjeurankar@gmail.com");
-                mail.To.Add("djordjeurankar@gmail.com");
+                mail.From= new MailAddress("foksfak@gmail.com");
+                mail.To.Add("foksfak@gmail.com");
                 mail.Subject = "Service approved";
                 mail.Body = "The service that you have made has been approved by our administrators! \n You are now able to add vehicles and branches!";
                 client.Send(mail);
