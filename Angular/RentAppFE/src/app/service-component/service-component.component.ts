@@ -73,6 +73,16 @@ export class ServiceComponentComponent implements OnInit {
     this.servicesGetter.DeleteService(id)
     .subscribe(
       data => {
+        this.servicesGetter.getListOfServices()
+        .subscribe(
+          data => {
+            this.Services=data;
+            console.log('SERVISI');
+            console.log(this.Services);
+          },
+          error => {
+            alert("Didn't get list of users!");
+          })
       },
       error => {
         alert("Didn't delete selected service!");

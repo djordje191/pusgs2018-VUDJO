@@ -150,7 +150,7 @@ namespace RentApp.Controllers
         }
 
 
-
+        
         [HttpPost]
         [Route("api/AddVehicle")]
         public HttpResponseMessage UploadImage()

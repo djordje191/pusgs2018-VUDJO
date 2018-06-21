@@ -8,10 +8,10 @@
         </div>
         <ul class="nav navbar-nav">
           <li><a [routerLink]="['/listOfService']">Home</a></li> 
-          <li><a [routerLink]="['/addServices']">Add Service</a></li> <!--*ngIf="isManager()"-->
-          <li><a [routerLink]="['/addTypeOfVehicle']">Add Type Of Vehicle</a></li>
-          <li><a [routerLink]="['/acceptAppUsers']">Accept Users</a></li>
-          <li><a [routerLink]="['/aproveService']">Aprove Service</a></li>
+          <li *ngIf="isManager()"><a [routerLink]="['/addServices']">Add Service</a></li> <!--*ngIf="isManager()"-->
+          <li *ngIf="isAdmin()"><a [routerLink]="['/addTypeOfVehicle']">Add Type Of Vehicle</a></li>
+          <li *ngIf="isAdmin()"><a [routerLink]="['/acceptAppUsers']">Accept Users</a></li>
+          <li *ngIf="isAdmin()"><a [routerLink]="['/aproveService']">Aprove Service</a></li>
           <li><a [routerLink]="['/search']">Search Vehicles</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">

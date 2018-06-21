@@ -23,7 +23,8 @@ export class LoginFormComponent implements OnInit {
   onSubmit(data:LoginData) {
     console.log(data);
     this.loginService.getTheToken(data);
-    this.router.navigateByUrl('/profile');
+    this.router.navigateByUrl('/listOfService');
+    
   }
 
 }

@@ -131,6 +131,7 @@ namespace RentApp.Controllers
             return Ok(branch);
         }
 
+
         // PUT: api/Branches/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutBranch(int id, Branch branch)
@@ -166,6 +167,7 @@ namespace RentApp.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        [Authorize(Roles = "Manager")]
         // POST: api/Branches
         [ResponseType(typeof(Branch))]
         public IHttpActionResult PostBranch(Branch branch)

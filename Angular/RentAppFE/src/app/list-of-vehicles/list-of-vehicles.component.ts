@@ -125,6 +125,7 @@ export class ListOfVehiclesComponent implements OnInit {
       .subscribe(
         data => {
            this.canRent = data;
+           
         },
         error => {
           alert("rentService.checkRent(id) error!");

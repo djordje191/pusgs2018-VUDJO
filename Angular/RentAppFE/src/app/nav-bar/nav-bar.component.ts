@@ -44,4 +44,13 @@ export class NavBarComponent implements OnInit {
     return false;
     
   }
+  isAdmin(){
+    this.userRole=localStorage.getItem("role")
+    if(this.userRole=="Admin"){
+      return true;
+    }
+    else 
+    return false;
+    
+  }
 }

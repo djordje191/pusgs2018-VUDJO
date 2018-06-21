@@ -18,12 +18,12 @@
                 <p class="group inner list-group-item-text"> <i>Description: </i>{{service.Description}}</p>
                 <div class="row">
                     <h3><span class="glyphicon glyphicon-th-list"></span>Branches</h3>
-                    <button type="submit" class="btn btn-success" [routerLink]="['/addBranch',service.Name,service.Email]"> <!--*ngIf="isManager()"-->
+                    <button  type="submit" class="btn btn-success" [routerLink]="['/addBranch',service.Name,service.Email]"> <!--*ngIf="isManager()"-->
                       <span class="glyphicon glyphicon-ok" ></span> Add Branch
                     </button>
                     <br>
                     <br>
-                    <button  type="submit" class="btn btn-danger" (click)="deleteService(service.Id)"> <!--*ngIf="isAdmin()"-->
+                    <button *ngIf="isAdmin()" type="submit" class="btn btn-danger" (click)="deleteService(service.Id)"> <!--*ngIf="isAdmin()"-->
                       <span class="glyphicon glyphicon-remove"></span> Remove Service
                     </button>
                     <br>

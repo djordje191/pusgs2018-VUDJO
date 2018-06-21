@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UploadFileServiceService } from '../services/upload-file-service.service';
 import { ActivatedRoute } from "@angular/router";
 import { ListOfBranchesService } from '../services/list-of-branches.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-branch',
@@ -15,7 +16,8 @@ export class AddBranchComponent implements OnInit {
 
   constructor(private imageService : UploadFileServiceService,
               private route : ActivatedRoute,
-              private branchService : ListOfBranchesService) { 
+              private branchService : ListOfBranchesService,
+              private router : Router) { 
     this.route.params.subscribe(params=> this.args=params);
     console.log(this.args);
   }
@@ -41,6 +43,7 @@ export class AddBranchComponent implements OnInit {
         data=>{
         console.log('done');
         Image.value=null;
+        this.router.navigateByUrl('/listOfService');
       });
   }
 }

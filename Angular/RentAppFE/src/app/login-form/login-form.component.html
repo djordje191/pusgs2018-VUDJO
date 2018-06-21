@@ -28,8 +28,9 @@
             </div>
             <br>
             <div>
-                <button type="submit" class="btn btn-success" [disabled]="!f.valid">
-                    <span class="glyphicon glyphicon-ok"></span>
+                <button  type="submit" class="btn btn-success" [disabled]="!f.valid">
+                    <span class="glyphicon glyphicon-ok"><a [routerLink]="['/profile']"></a></span>
+                    
                 </button>
             </div>
           </form>

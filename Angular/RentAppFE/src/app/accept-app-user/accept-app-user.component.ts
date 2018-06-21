@@ -27,7 +27,14 @@ export class AcceptAppUserComponent implements OnInit {
     this.appUserService.acceptUser(id, isAccepted)
     .subscribe(
       data => {
-
+        this.appUserService.getUnconfirmedAppUsers()
+        .subscribe(
+          data => {
+            this.appUsers=data;
+          },
+          error => {
+            alert("Didn't get list of new users!");
+          })
       },
       error => {
         alert("acceptUser() error!");

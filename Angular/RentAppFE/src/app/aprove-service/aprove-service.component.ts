@@ -28,7 +28,15 @@ export class AproveServiceComponent implements OnInit {
       this.aproveServiceService.serviceConfirmation(id, isAccepted)
       .subscribe(
         data => {
-  
+          this.aproveServiceService.GetNewServices()
+          .subscribe(
+            data => {
+              this.services=data;
+            },
+            error => {
+              debugger
+              alert("Didn't get list of new services!");
+            })
         },
         error => {
           alert("aproveService() error!");

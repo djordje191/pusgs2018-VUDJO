@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ListOfVehiclesService } from '../services/list-of-vehicles.service';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-vehicle',
@@ -25,7 +26,7 @@ export class AddVehicleComponent implements OnInit {
     console.log("file prepared");
   }
 
-  constructor(private vehicleService:ListOfVehiclesService, private route : ActivatedRoute) {
+  constructor(private vehicleService:ListOfVehiclesService, private route : ActivatedRoute,private router : Router) {
     this.route.params.subscribe(params=> this.args=params);
     vehicleService.getListOfVehicleTypes()
     .subscribe(
@@ -47,6 +48,7 @@ export class AddVehicleComponent implements OnInit {
       data=>{
         console.log('done');
         Image.value=null;
+        this.router.navigateByUrl('/listOfService');
       });
   }
 }
