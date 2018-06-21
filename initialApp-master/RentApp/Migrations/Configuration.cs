@@ -75,6 +75,11 @@ namespace RentApp.Migrations
 
             );
 
+            context.AppUsers.AddOrUpdate(
+                m=>m.FullName,
+                new AppUser() { FullName = "Manager Managerovic"}
+            );
+
             //var tov1 = new TypeOfVehicle() { Name = "Karavan" };
             //var tov2 = new TypeOfVehicle() { Name = "Limuzina" };
 
@@ -88,6 +93,7 @@ namespace RentApp.Migrations
             //context.Services.Add(s1);
 
             //SaveChanges(context);
+
 
             var userStore = new UserStore<RAIdentityUser>(context);
             var userManager = new UserManager<RAIdentityUser>(userStore);
@@ -107,6 +113,15 @@ namespace RentApp.Migrations
                 var user = new RAIdentityUser() { Id = "appu", UserName = "appu", Email = "appu@yahoo.com", PasswordHash = RAIdentityUser.HashPassword("appu"), AppUserId = _appUser.Id };
                 userManager.Create(user);
                 userManager.AddToRole(user.Id, "AppUser");
+            }
+
+            if (!context.Users.Any(u => u.UserName == "manager"))
+
+            {
+                var _appUser = context.AppUsers.FirstOrDefault(a => a.FullName == "Manager Managerovic");
+                var user = new RAIdentityUser() { Id = "manager", UserName = "manager", Email = "manager@yahoo.com", PasswordHash = RAIdentityUser.HashPassword("manager"), AppUserId = _appUser.Id };
+                userManager.Create(user);
+                userManager.AddToRole(user.Id, "Manager");
             }
         }
 
