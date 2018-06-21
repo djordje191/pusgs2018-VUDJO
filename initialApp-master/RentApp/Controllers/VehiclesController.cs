@@ -45,6 +45,27 @@ namespace RentApp.Controllers
             return Ok(vehicle);
         }
 
+        [HttpGet]
+        [Route("api/DisableVehicle")]
+        public IHttpActionResult DisableVehicle(int vehicleId)
+        {
+            Vehicle vehicle = unitOfWork.Vehicles.Get(vehicleId);
+
+            vehicle.Disable = true;
+            unitOfWork.Vehicles.Update(vehicle);
+            unitOfWork.Complete();
+
+            return Ok(vehicle);
+        }
+
+        [ResponseType(typeof(Vehicle))]
+        [Route("api/GetAllVehicles")]
+        public IHttpActionResult GetAllVehicles()
+        {
+            IEnumerable<Vehicle> vehicles = unitOfWork.Vehicles.GetAll();
+            return Ok(vehicles);
+        }
+
         // PUT: api/Vehicles/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutVehicle(int id, Vehicle vehicle)

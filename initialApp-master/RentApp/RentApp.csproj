@@ -309,6 +309,10 @@
     <Compile Include="Migrations\201806210920235_comments migration.Designer.cs">
       <DependentUpon>201806210920235_comments migration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806211952154_vehicle disabled property + manager adding.cs" />
+    <Compile Include="Migrations\201806211952154_vehicle disabled property + manager adding.Designer.cs">
+      <DependentUpon>201806211952154_vehicle disabled property + manager adding.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -442,6 +446,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806210920235_comments migration.resx">
       <DependentUpon>201806210920235_comments migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806211952154_vehicle disabled property + manager adding.resx">
+      <DependentUpon>201806211952154_vehicle disabled property + manager adding.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
