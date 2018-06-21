@@ -30,13 +30,16 @@ export class ListOfVehiclesService {
     return this.httpClient.get('http://localhost:51680/api/Services/GetVehicles?id='+serviceId);
   }
 
+  getAllVehicles(): Observable<any> {
+    return this.httpClient.get('http://localhost:51680/api/GetAllVehicles');
+  }
+
   //Vraca sve vrste tipova vozila
   getListOfVehicleTypes(): Observable<any> {
     return this.httpClient.get('http://localhost:51680/api/GetVehicleTypes');
   }
 
   getVehiclePage(pageNumber, serviceId):Observable<any>{
-    console.log('=====================================');
     console.log(serviceId);
     return this.http.get('http://localhost:51680/api/Vehicles?pageIndex='+pageNumber+'&pageSize='+4+'&serviceId='+serviceId)
     .map(this.parseData)

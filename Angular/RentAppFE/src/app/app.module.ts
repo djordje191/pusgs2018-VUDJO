@@ -34,6 +34,7 @@ import { RentVehicleComponent } from './rent-vehicle/rent-vehicle.component';
 import { AproveServiceComponent } from 'src/app/aprove-service/aprove-service.component';
 import { CanActivateViaAuthGuard } from 'src/app/guard/auth.guard';
 import { SearchFilterComponent } from './search-filter/search-filter.component';
+import { DisableVehicleComponent } from 'src/app/disable-vehicle/disable-vehicle.component';
 
 const Routes=[
   {
@@ -106,6 +107,10 @@ const Routes=[
   {
     path:"search",
     component:SearchFilterComponent
+  },
+  {
+    path:"disableVehicle",
+    component: DisableVehicleComponent
   }
 
 ]
@@ -134,7 +139,7 @@ const Routes=[
     RentVehicleComponent,
     AproveServiceComponent,
     SearchFilterComponent,
-
+    DisableVehicleComponent
   ],
   imports: [
     BrowserModule,
