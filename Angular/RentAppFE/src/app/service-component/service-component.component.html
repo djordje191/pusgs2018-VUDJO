@@ -1,12 +1,12 @@
 <div class="row">
-  <div class="col col-md-4 col-md-push-4">
+  <div class="col col-md-2 col-md-push-5">
     <legend align="center">Services</legend>
   </div>
 </div>
 
 <div *ngFor="let service of Services">
   <div *ngIf="service.IsDeleted!=true && service.IsAccepted" class="row">
-    <div class="col col-md-4 col-md-push-4">
+    <div class="col col-md-4 col-md-push-5">
       <div class="container">
         <div id="products" class="row list-group">
           <div class="item  col-xs-4 col-lg-4">
