@@ -34,6 +34,10 @@ export class ListOfVehiclesService {
     return this.httpClient.get('http://localhost:51680/api/GetAllVehicles');
   }
 
+  DisableVehicle(id): Observable<any> {
+    return this.httpClient.get('http://localhost:51680/api/DisableVehicle?vehicleId='+id);
+  }
+
   //Vraca sve vrste tipova vozila
   getListOfVehicleTypes(): Observable<any> {
     return this.httpClient.get('http://localhost:51680/api/GetVehicleTypes');

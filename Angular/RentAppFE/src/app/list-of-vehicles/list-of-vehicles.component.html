@@ -9,7 +9,7 @@
 <div *ngIf="search==''">
   
 <div *ngFor="let vehicle of Vehicles">
-  <div class="row">
+  <div *ngIf="!vehicle.Disable" class="row">
     <div class="col col-md-3 col-md-push-5">
       <div class="container">
         <div id="products" class="row list-group">

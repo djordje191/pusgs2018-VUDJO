@@ -4,7 +4,8 @@ import { ListOfVehiclesService } from 'src/app/services/list-of-vehicles.service
 @Component({
   selector: 'app-disable-vehicle',
   templateUrl: './disable-vehicle.component.html',
-  styleUrls: ['./disable-vehicle.component.css']
+  styleUrls: ['./disable-vehicle.component.css'],
+  providers: [ListOfVehiclesService]
 })
 export class DisableVehicleComponent implements OnInit {
   Vehicles:any;
@@ -16,6 +17,7 @@ export class DisableVehicleComponent implements OnInit {
     .subscribe(
       data => {
         this.Vehicles=data;
+        console.log(this.Vehicles);
       },
       error => {
         alert("Didn't get list of vehicles!");
@@ -23,7 +25,17 @@ export class DisableVehicleComponent implements OnInit {
   }
 
   Disable(vehicleId){
+    console.log('================================================');
     console.log(vehicleId);
+
+    this.getVehicleService.DisableVehicle(vehicleId)
+    .subscribe(
+      data => {
+      },
+      error => {
+        alert("DisableVehicle service error!");
+    })
+
     this.getVehicleService.getAllVehicles()
     .subscribe(
       data => {
