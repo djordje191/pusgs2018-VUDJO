@@ -11,6 +11,6 @@ namespace RentApp.Models.Entities
         public string Content { get; set; }
         public bool IsNegative { get; set; }
         public DateTime? PostedDate { get; set; }
-        public AppUser User { get; set; }
+        public int UserKey { get; set; }
     }
 }

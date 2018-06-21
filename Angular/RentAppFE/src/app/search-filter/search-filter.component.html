@@ -1,0 +1,50 @@
+<form #f="ngForm" (ngSubmit)="onSubmit(f.value)" class="form-horizontal">
+  <fieldset>
+  <!-- Text input-->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="textinput">Price Per Hour</label>  
+    <div class="col-md-4">
+    <input id="Price" name="Price" type="text" placeholder="" class="form-control input-md" ngModel #Price="ngModel">
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="textinput">Vehicle Type</label>  
+    <div class="col-md-4">
+      <select class="form-control" name="Type" id="Type" ngModel #Type="ngModel">
+          <option *ngFor="let t of vehicleTypes" value="{{t.Id}}">{{t.Name}}</option>
+      </select>
+    </div>
+  </div>
+  
+  <div class="form-group">
+      <label class="col-md-4 control-label" for="addServiceButton"></label>
+      <div class="col-md-4">
+        <button type="submit" id="addServiceButton" name="addServiceButton" class="btn btn-success" [disabled]="!f.valid">Search</button>
+      </div>
+    </div>
+  
+  </fieldset>
+  </form>
+
+<div *ngFor="let vehicle of Vehicles">
+  <div class="row">
+    <div class="col col-md-3 col-md-push-4">
+      <div class="container">
+        <div id="products" class="row list-group">
+          <div class="item  col-xs-3 col-lg-3">
+            <div class="thumbnail">
+              <img class="group list-group-image" src='http://localhost:51680/api/Services/GetImage?path={{vehicle.Images}}' alt="Branch logo" />
+              <div class="caption" align="center">
+                <h4 class="group inner list-group-item-heading">Model: {{vehicle.Model}}</h4>
+                <h4 class="group inner list-group-item-heading">Manufactor: {{vehicle.Manufactor}}</h4>
+                <h4 class="group inner list-group-item-heading">Year: {{vehicle.Year}}</h4>
+                <h4 class="group inner list-group-item-heading">Price per hour: {{vehicle.PricePerHour}}</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -27,6 +27,12 @@ export class ListOfServicesService {
     return this.httpClient.get('http://localhost:51680/api/Services');
   }
 
+  giveComment(userId, serviceId, content, isNegative): Observable<any> {
+    const endpoint = 'http://localhost:51680/api/Services/GiveComment?userId='+userId+'&serviceId='+serviceId+'&content='+content+'&isNegative='+isNegative;
+    console.log("Endpoint: "+endpoint);
+    return this.httpClient.get(endpoint);
+  }
+
   DeleteService(id:string): Observable<any> {
       const endpoint = 'http://localhost:51680/api/Services/DeleteService';
       const formData: FormData = new FormData();

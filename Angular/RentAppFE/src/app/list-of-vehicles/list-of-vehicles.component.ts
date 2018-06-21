@@ -17,6 +17,11 @@ export class ListOfVehiclesComponent implements OnInit {
   private user:any;
   userRole:string;
   private canRent:boolean;
+
+  Vehicles2: any;
+  search: string = '';
+  selectOptionsU: string = '';
+  selected: string = 'Model';
   
   constructor(private route : ActivatedRoute,
               private vehicleService: ListOfVehiclesService,
@@ -29,6 +34,35 @@ export class ListOfVehiclesComponent implements OnInit {
     this.getListOfVehicles();
     this.getCurrentUser();
     this.isRentable();
+  }
+
+  selectChangeHandler(event: any) {
+    this.selected = event.target.value;
+  }
+
+  doSomething(event: any) {
+    this.Vehicles2 = [];
+    this.search = event;
+    
+    this.Vehicles.forEach(obj => {
+      if (this.selected == "Model")
+      {
+        var brojEvent = event.length;
+        var rec = obj.Model.slice(0, brojEvent);
+        
+        if (rec.toLowerCase() == event.toLowerCase())
+        {
+          this.Vehicles2.push(obj);
+        }
+      }
+      else if (this.selected == "Price")
+      {
+        if (event <= obj.PricePerHour)
+        {
+          this.Vehicles2.push(obj);
+        }
+      }
+    });
   }
 
   getListOfVehicles(){

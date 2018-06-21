@@ -13,6 +13,7 @@ using RentApp.Persistance;
 using RentApp.Persistance.UnitOfWork;
 using System.Web;
 using System.IO;
+using System.Net.Mail;
 
 namespace RentApp.Controllers
 {
@@ -133,15 +134,130 @@ namespace RentApp.Controllers
             return Ok(newServices);
         }
 
+        [Route("Search")]
+        [HttpGet]
+        public IHttpActionResult GiveComment(string type, decimal price)
+        {
+            IEnumerable<Vehicle> vehicles = unitOfWork.Vehicles.GetAll();
+            List<Vehicle> retVal = new List<Vehicle>();
+
+            if (price <= 0.0m && type != null) 
+            {
+                retVal = SearchTypeOnly(vehicles, type);
+                return Ok(retVal);
+            }
+            else if(type==null && price>0)
+            {
+                retVal = SearchPriceOnly(vehicles, price);
+                return Ok(retVal);
+            }
+            else if(type!=null && price>0.0m)
+            {
+                retVal = SearchFull(vehicles, type, price);
+                return Ok(retVal);
+            }
+
+            return Ok(retVal);
+        }
+
+        public List<Vehicle> SearchTypeOnly(IEnumerable<Vehicle> vehicles, string type)
+        {
+            List<Vehicle> searchList = new List<Vehicle>();
+
+            foreach (Vehicle v in vehicles)
+            {
+                if (v.Type.Id.ToString() == type)
+                {
+                    searchList.Add(v);
+                }
+            }
+
+            return searchList;
+        }
+
+        public List<Vehicle> SearchPriceOnly(IEnumerable<Vehicle> vehicles, decimal price)
+        {
+            List<Vehicle> searchList = new List<Vehicle>();
+
+            foreach (Vehicle v in vehicles)
+            {
+                if (v.PricePerHour == price)
+                {
+                    searchList.Add(v);
+                }
+            }
+
+            return searchList;
+        }
+
+        public List<Vehicle> SearchFull(IEnumerable<Vehicle> vehicles, string type, decimal price)
+        {
+            List<Vehicle> searchList = new List<Vehicle>();
+
+            foreach (Vehicle v in vehicles)
+            {
+                if (v.Type.Id.ToString() == type && v.PricePerHour==price)
+                {
+                    searchList.Add(v);
+                }
+            }
+
+            return searchList;
+        }
+
+        [Route("GiveComment")]
+        [HttpGet]
+        public IHttpActionResult GiveComment(int userId, int serviceId, string content, bool isNegative)
+        {
+            Service service = unitOfWork.Services.Get(serviceId);
+            AppUser appUser = unitOfWork.AppUsers.Get(userId);
+
+            Comment comment = new Comment { Content = content, IsNegative = isNegative, PostedDate = DateTime.Now, UserKey=appUser.Id};
+            service.Comments.Add(comment);
+            appUser.Comments.Add(comment);
+            unitOfWork.Comments.Add(comment);
+            unitOfWork.Services.Update(service);
+            unitOfWork.AppUsers.Update(appUser);
+            unitOfWork.Complete();
+            
+            return Ok();
+        }
+
         [Route("AproveService")]
         [HttpGet]
         public IHttpActionResult serviceConfirmation(int id, bool isAccepted)
         {
             Service service = unitOfWork.Services.Get(id);
+            AppUser au = new AppUser();
             service.IsAccepted = isAccepted;
             service.IsProcessed = true;
             unitOfWork.Services.Update(service);
             unitOfWork.Complete();
+            
+            if (service.IsAccepted == true)
+            {
+                //prvi parametar sendFrom,drugi sendTo
+                MailMessage mail = new MailMessage("foksfak@gmail.com", "foksfak@gmail.com");   
+                SmtpClient client = new SmtpClient();
+                client.Port = 587;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.UseDefaultCredentials = false;
+                client.Credentials = new NetworkCredential("foksfak@gmail.com", "nadvoznjak");
+                client.Host = "smtp.gmail.com";
+                client.EnableSsl = true;
+                mail.From= new MailAddress("foksfak@gmail.com");
+                mail.To.Add("foksfak@gmail.com");
+                mail.Subject = "Service approved";
+                mail.Body = "The service that you have made has been approved by our administrators! \n You are now able to add vehicles and branches!";
+                try
+                {
+                    client.Send(mail);
+                }
+                catch
+                {
+
+                }
+            }
 
             return Ok();
         }

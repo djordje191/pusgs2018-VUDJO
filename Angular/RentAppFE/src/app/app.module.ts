@@ -33,6 +33,7 @@ import { AcceptAppUserComponent } from './accept-app-user/accept-app-user.compon
 import { RentVehicleComponent } from './rent-vehicle/rent-vehicle.component';
 import { AproveServiceComponent } from 'src/app/aprove-service/aprove-service.component';
 import { CanActivateViaAuthGuard } from 'src/app/guard/auth.guard';
+import { SearchFilterComponent } from './search-filter/search-filter.component';
 
 const Routes=[
   {
@@ -50,8 +51,7 @@ const Routes=[
     component:ServiceComponentComponent,
     children: [
       { path: "listOfBranches", component: ListOfBranchesComponent}
-    ],
-    canActivate:['CanAlwaysActivateGuard']
+    ]
   },
   {
     path:"addServices",
@@ -102,6 +102,10 @@ const Routes=[
     path:"aproveService",
     component:AproveServiceComponent,
     canActivate:[CanActivateViaAuthGuard]
+  },
+  {
+    path:"search",
+    component:SearchFilterComponent
   }
 
 ]
@@ -129,6 +133,7 @@ const Routes=[
     AcceptAppUserComponent,
     RentVehicleComponent,
     AproveServiceComponent,
+    SearchFilterComponent,
 
   ],
   imports: [

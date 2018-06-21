@@ -304,9 +304,9 @@
     <Compile Include="Migrations\201806070945104_added Comments.Designer.cs">
       <DependentUpon>201806070945104_added Comments.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806201048109_Ispravak.cs" />
-    <Compile Include="Migrations\201806201048109_Ispravak.Designer.cs">
-      <DependentUpon>201806201048109_Ispravak.cs</DependentUpon>
+    <Compile Include="Migrations\201806210920235_comments migration.cs" />
+    <Compile Include="Migrations\201806210920235_comments migration.Designer.cs">
+      <DependentUpon>201806210920235_comments migration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -439,8 +439,8 @@
     <EmbeddedResource Include="Migrations\201806070945104_added Comments.resx">
       <DependentUpon>201806070945104_added Comments.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806201048109_Ispravak.resx">
-      <DependentUpon>201806201048109_Ispravak.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201806210920235_comments migration.resx">
+      <DependentUpon>201806210920235_comments migration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
