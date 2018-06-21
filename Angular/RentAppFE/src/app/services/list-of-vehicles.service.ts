@@ -35,8 +35,10 @@ export class ListOfVehiclesService {
     return this.httpClient.get('http://localhost:51680/api/GetVehicleTypes');
   }
 
-  getVehiclePage(pageNumber):Observable<any>{
-    return this.http.get('http://localhost:51680/api/Vehicles?pageIndex='+pageNumber+'&pageSize='+4)
+  getVehiclePage(pageNumber, serviceId):Observable<any>{
+    console.log('=====================================');
+    console.log(serviceId);
+    return this.http.get('http://localhost:51680/api/Vehicles?pageIndex='+pageNumber+'&pageSize='+4+'&serviceId='+serviceId)
     .map(this.parseData)
     .catch(this.handleError);
   }

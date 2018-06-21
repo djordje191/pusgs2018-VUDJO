@@ -35,7 +35,7 @@ export class ListOfVehiclesComponent implements OnInit {
     //this.getListOfVehicles();
     this.getCurrentUser();
     this.isRentable();
-    this.vehicleService.getVehiclePage(this.pageNumber)
+    this.vehicleService.getVehiclePage(this.pageNumber, this.args.id)
     .subscribe(
       data =>{
         this.Vehicles=data;  

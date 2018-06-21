@@ -111,11 +111,15 @@ namespace RentApp.Controllers
             return Ok(vehicle);
         }
 
-        public IEnumerable<Vehicle> GetVehicles(int pageIndex,int pageSize)
+        public IEnumerable<Vehicle> GetVehicles(int pageIndex,int pageSize, int serviceId)
         {
-            var retValue = unitOfWork.Vehicles.GetAll(pageIndex, pageSize);
+            //var retValue = unitOfWork.Vehicles.GetAll(pageIndex, pageSize);
+            Service service = unitOfWork.Services.Get(serviceId);
+            List<Vehicle> vehicles = service.Vehicles;
 
-            return retValue;
+            vehicles = new List<Vehicle>(vehicles.OrderBy(s => s.id).Skip((pageIndex - 1) * pageSize).Take(pageSize));
+
+            return vehicles;
         }
 
         [HttpPost]
