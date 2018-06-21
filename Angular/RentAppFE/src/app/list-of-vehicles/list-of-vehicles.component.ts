@@ -17,6 +17,7 @@ export class ListOfVehiclesComponent implements OnInit {
   private user:any;
   userRole:string;
   private canRent:boolean;
+  pageNumber :number=1;
 
   Vehicles2: any;
   search: string = '';
@@ -31,14 +32,26 @@ export class ListOfVehiclesComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.getListOfVehicles();
+    //this.getListOfVehicles();
     this.getCurrentUser();
     this.isRentable();
+    this.vehicleService.getVehiclePage(this.pageNumber)
+    .subscribe(
+      data =>{
+        this.Vehicles=data;  
+        console.log(data);      
+      },
+      error=>{
+        alert(error.error.ModelState[""][0]);
+      }
+    )
   }
 
   selectChangeHandler(event: any) {
     this.selected = event.target.value;
   }
+
+ 
 
   doSomething(event: any) {
     this.Vehicles2 = [];
@@ -116,5 +129,13 @@ export class ListOfVehiclesComponent implements OnInit {
         error => {
           alert("rentService.checkRent(id) error!");
         })
+    }
+    setPageNumber(num:number){
+      this.pageNumber=num;
+      this.ngOnInit();
+    }
+    incPageNumber(){
+      this.pageNumber+=1;
+      this.ngOnInit();
     }
 }

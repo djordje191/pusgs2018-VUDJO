@@ -16,7 +16,11 @@ namespace RentApp.Persistance.Repository
 
         public IEnumerable<Vehicle> GetAll(int pageIndex, int pageSize)
         {
-            return DemoContext.Vehicles.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            RADBContext db = new RADBContext();
+            List<Vehicle> vehicle = new List<Vehicle>(db.Vehicles);
+            vehicle = new List<Vehicle>(vehicle.OrderBy(s => s.id).Skip((pageIndex - 1) * pageSize).Take(pageSize));
+
+            return vehicle;
         }
     }
 }

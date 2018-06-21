@@ -15,6 +15,7 @@ using System.Web;
 using System.IO;
 using Microsoft.AspNet.Identity;
 using System.Collections;
+using System.Net.Mail;
 
 namespace RentApp.Controllers
 {
@@ -127,6 +128,31 @@ namespace RentApp.Controllers
             user.IsProcessed = true;
             unitOfWork.AppUsers.Update(user);
             unitOfWork.Complete();
+
+            if (user.IsAccepted == true)
+            {
+                //prvi parametar sendFrom,drugi sendTo
+                MailMessage mail = new MailMessage("foksfak@gmail.com", "foksfak@gmail.com");
+                SmtpClient client = new SmtpClient();
+                client.Port = 587;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.UseDefaultCredentials = false;
+                client.Credentials = new NetworkCredential("foksfak@gmail.com", "nadvoznjak");
+                client.Host = "smtp.gmail.com";
+                client.EnableSsl = true;
+                mail.From = new MailAddress("foksfak@gmail.com");
+                mail.To.Add("foksfak@gmail.com");
+                mail.Subject = "Profile approved";
+                mail.Body = "The account that you have made has been approved by our administrators!";
+                try
+                {
+                    client.Send(mail);
+                }
+                catch
+                {
+
+                }
+            }
 
             return Ok();
         }
