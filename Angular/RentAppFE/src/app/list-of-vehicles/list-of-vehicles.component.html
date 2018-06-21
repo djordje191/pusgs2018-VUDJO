@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
       <div class="col col-md-3 col-md-push-4">
-        <h3><a  [routerLink]="['/addVehicle',args.id]">Add New Vehicle...</a></h3> <!--*ngIf="isManager()"-->
+        <h3><a *ngIf="isManager()" [routerLink]="['/addVehicle',args.id]">Add New Vehicle...</a></h3> <!--*ngIf="isManager()"-->
       </div>
   </div>
 </div>
@@ -55,7 +55,7 @@
                  <button *ngIf="isUserAccepted() && !vehicle.Unavailable" class="group inner list-group-item-heading" type="submit" id="rentVehicleButton" name="rentVehicleButton" class="btn btn-success" [routerLink]="['/rentVehicle',args.id,vehicle.id]" >Rent Vehicle</button>
                  <br>
                  <br>
-                 <button class="group inner list-group-item-heading" type="submit" id="rentVehicleButton" name="rentVehicleButton" class="btn btn-success" [routerLink]="['/editVehicle',vehicle.id]" >Edit Vehicle</button> <!--*ngIf="isManager()"-->
+                 <button *ngIf="isManager()" class="group inner list-group-item-heading" type="submit" id="rentVehicleButton" name="rentVehicleButton" class="btn btn-success" [routerLink]="['/editVehicle',vehicle.id]" >Edit Vehicle</button> <!--*ngIf="isManager()"-->
                 </div>
               </div>
             </div>

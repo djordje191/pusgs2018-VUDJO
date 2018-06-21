@@ -18,7 +18,7 @@
                 <p class="group inner list-group-item-text"> <i>Description: </i>{{service.Description}}</p>
                 <div class="row">
                     <h3><span class="glyphicon glyphicon-th-list"></span>Branches</h3>
-                    <button  type="submit" class="btn btn-success" [routerLink]="['/addBranch',service.Name,service.Email]"> <!--*ngIf="isManager()"-->
+                    <button *ngIf="isManager()" type="submit" class="btn btn-success" [routerLink]="['/addBranch',service.Name,service.Email]"> <!--*ngIf="isManager()"-->
                       <span class="glyphicon glyphicon-ok" ></span> Add Branch
                     </button>
                     <br>
