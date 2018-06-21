@@ -86,12 +86,18 @@ namespace RentApp.Controllers
         [HttpGet]
         public IHttpActionResult GetCurrentUser()
         {
-            var username = User.Identity.Name;
-            RADBContext db = new RADBContext();
-            var user = db.Users.Where(u => u.UserName == username).Include(u1 => u1.AppUser).First();
-            var appUser = user.AppUser;
-
-            return Ok(appUser);
+            try
+            {
+                var username = User.Identity.Name;
+                RADBContext db = new RADBContext();
+                var user = db.Users.Where(u => u.UserName == username).Include(u1 => u1.AppUser).First();
+                var appUser = user.AppUser;
+                return Ok(appUser);
+            }
+            catch
+            {
+                return Ok();
+            }
         }
 
         [Route("api/AppUsers/GetAppUsers")]

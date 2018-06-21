@@ -67,7 +67,7 @@ const Routes=[
   {
     path: "vehicles/:id",
     component:ListOfVehiclesComponent,
-    canActivate:[CanActivateViaAuthGuard]
+    canActivate:['CanAlwaysActivateGuard']
   },
   {
     path: "addVehicle/:id",
