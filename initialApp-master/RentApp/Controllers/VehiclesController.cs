@@ -111,6 +111,13 @@ namespace RentApp.Controllers
             return Ok(vehicle);
         }
 
+        public IEnumerable<Vehicle> GetVehicles(int pageIndex,int pageSize)
+        {
+            var retValue = unitOfWork.Vehicles.GetAll(pageIndex, pageSize);
+
+            return retValue;
+        }
+
         [HttpPost]
         [Route("api/Vehicles/EditVehicle")]
         public HttpResponseMessage EditVehicle()

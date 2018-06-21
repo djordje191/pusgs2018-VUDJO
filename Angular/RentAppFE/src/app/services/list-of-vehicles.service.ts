@@ -35,6 +35,12 @@ export class ListOfVehiclesService {
     return this.httpClient.get('http://localhost:51680/api/GetVehicleTypes');
   }
 
+  getVehiclePage(pageNumber):Observable<any>{
+    return this.http.get('http://localhost:51680/api/Vehicles?pageIndex='+pageNumber+'&pageSize='+4)
+    .map(this.parseData)
+    .catch(this.handleError);
+  }
+
   AddVehicle(formValues, fileToUpload:File, serviceId:string){
     console.log("servis usao");
     const endpoint = 'http://localhost:51680/api/AddVehicle';
