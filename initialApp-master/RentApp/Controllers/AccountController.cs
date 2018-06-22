@@ -18,6 +18,7 @@ using RentApp.Models.Entities;
 using RentApp.Providers;
 using RentApp.Results;
 using System.IO;
+using RentApp.Hubs;
 
 namespace RentApp.Controllers
 {
@@ -319,6 +320,7 @@ namespace RentApp.Controllers
                 return BadRequest(ModelState);
             }
 
+            NotificationsHub.NotifyAdmin("New user is added...");
             var appUser = new AppUser() { FullName = model.FullName ,Email=model.Email,  BirthDay = model.DateOfBirth, /*CreatingServicesBan = true,*/ /*IsRegistered = false*/ };
 
             var user = new RAIdentityUser() {Id=model.Email, UserName = model.Email, Email = model.Email, AppUser = appUser};

@@ -14,6 +14,7 @@ using RentApp.Persistance.UnitOfWork;
 using System.Web;
 using System.IO;
 using System.Net.Mail;
+using RentApp.Hubs;
 
 namespace RentApp.Controllers
 {
@@ -289,6 +290,9 @@ namespace RentApp.Controllers
         [Route("UploadImage")]
         public HttpResponseMessage UploadImage()
         {
+            //Notify for websocket
+            NotificationsHub.NotifyAdmin("New service is added...");
+
             string imageName = null;
             var httpRequest = HttpContext.Current.Request;
             //Upload Image
