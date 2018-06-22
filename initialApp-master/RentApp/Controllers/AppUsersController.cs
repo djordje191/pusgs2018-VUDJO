@@ -119,6 +119,7 @@ namespace RentApp.Controllers
             return Ok(newUsers);
         }
 
+        [Authorize(Roles = "Admin")]
         [Route("api/AppUsers/AcceptUser")]
         [HttpGet]
         public IHttpActionResult AppUserConfirmation(int id, bool isAccepted)

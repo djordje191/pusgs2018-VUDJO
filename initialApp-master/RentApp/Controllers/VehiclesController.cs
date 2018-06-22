@@ -45,6 +45,7 @@ namespace RentApp.Controllers
             return Ok(vehicle);
         }
 
+        [Authorize(Roles = "Manager")]
         [HttpGet]
         [Route("api/DisableVehicle")]
         public IHttpActionResult DisableVehicle(int vehicleId)
@@ -143,6 +144,7 @@ namespace RentApp.Controllers
             return vehicles;
         }
 
+        [Authorize(Roles = "Manager")]
         [HttpPost]
         [Route("api/Vehicles/EditVehicle")]
         public HttpResponseMessage EditVehicle()
@@ -175,7 +177,7 @@ namespace RentApp.Controllers
         }
 
 
-        
+        [Authorize(Roles = "Manager")]
         [HttpPost]
         [Route("api/AddVehicle")]
         public HttpResponseMessage UploadImage()

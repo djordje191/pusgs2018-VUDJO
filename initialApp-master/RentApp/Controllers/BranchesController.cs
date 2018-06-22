@@ -53,6 +53,7 @@ namespace RentApp.Controllers
             return response;
         }
 
+        [Authorize(Roles = "Manager")]
         [HttpPost]
         [Route("api/AddBranch")]
         public HttpResponseMessage UploadImage()

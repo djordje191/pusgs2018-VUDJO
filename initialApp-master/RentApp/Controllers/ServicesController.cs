@@ -224,6 +224,7 @@ namespace RentApp.Controllers
             return Ok();
         }
 
+        [Authorize(Roles = "Admin")]
         [Route("AproveService")]
         [HttpGet]
         public IHttpActionResult serviceConfirmation(int id, bool isAccepted)
@@ -285,6 +286,7 @@ namespace RentApp.Controllers
             return response;
         }
 
+        [Authorize(Roles = "Manager")]
         [HttpPost]
         [Route("UploadImage")]
         public HttpResponseMessage UploadImage()

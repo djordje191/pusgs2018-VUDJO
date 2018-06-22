@@ -31,6 +31,7 @@ namespace RentApp.Controllers
             return unitOfWork.TypesOfVehicle.GetAll();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         [Route("api/AddVehicleType")]
         public IHttpActionResult PutTypeOfVehicle(string type)
