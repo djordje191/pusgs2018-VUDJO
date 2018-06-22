@@ -35,6 +35,7 @@ import { AproveServiceComponent } from 'src/app/aprove-service/aprove-service.co
 import { CanActivateViaAuthGuard } from 'src/app/guard/auth.guard';
 import { SearchFilterComponent } from './search-filter/search-filter.component';
 import { DisableVehicleComponent } from 'src/app/disable-vehicle/disable-vehicle.component';
+import { EasterEggComponent } from './easter-egg/easter-egg.component';
 
 const Routes=[
   {
@@ -111,6 +112,10 @@ const Routes=[
   {
     path:"disableVehicle",
     component: DisableVehicleComponent
+  },
+  {
+    path:"easterEgg",
+    component: EasterEggComponent
   }
 
 ]
@@ -139,7 +144,9 @@ const Routes=[
     RentVehicleComponent,
     AproveServiceComponent,
     SearchFilterComponent,
-    DisableVehicleComponent
+    DisableVehicleComponent,
+    EasterEggComponent,
+    
   ],
   imports: [
     BrowserModule,

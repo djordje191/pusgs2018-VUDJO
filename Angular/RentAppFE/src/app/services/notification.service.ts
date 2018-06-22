@@ -32,6 +32,8 @@ export class NotificationService {
         this.registerOnServerEvents();
 
         this.registerForTimerEvents(); 
+
+        this.NotifyUserAdded();
         // call the connecion start method to start the connection to send and receive events. 
         this.startConnection(); 
         
@@ -74,5 +76,12 @@ export class NotificationService {
 
     public StartTimer() {
         this.proxy.invoke("TimeServerUpdates");
+    }
+
+    public NotifyUserAdded(){
+      this.proxy.on('newUserAdded', (data: string) => {  
+        console.log('received time: ' + data);  
+        this.timeReceived.emit(data);  
+      }); 
     }
 }
