@@ -21,4 +21,7 @@ export class RentCarService {
   checkRent(ServiceId): Observable<any> {
     return this.httpClient.get('http://localhost:51680/api/RentVehicle/CheckRentForVehicle?ServiceId='+ServiceId);
   }
+  getVehicleById(Id: number): Observable<any> {
+    return this.httpClient.get('http://localhost:51680/api/GetVehicle?Id='+Id)
+ }
 }

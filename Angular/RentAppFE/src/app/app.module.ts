@@ -36,6 +36,7 @@ import { CanActivateViaAuthGuard } from 'src/app/guard/auth.guard';
 import { SearchFilterComponent } from './search-filter/search-filter.component';
 import { DisableVehicleComponent } from 'src/app/disable-vehicle/disable-vehicle.component';
 import { EasterEggComponent } from './easter-egg/easter-egg.component';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 const Routes=[
   {
@@ -155,6 +156,7 @@ const Routes=[
     HttpClientXsrfModule,
     RouterModule.forRoot(Routes),
     FormsModule,
+    NgxPayPalModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk'})
   ],
   providers: [CanActivateViaAuthGuard,

@@ -53,7 +53,7 @@ namespace RentApp.Controllers
             return response;
         }
 
-        [Authorize(Roles = "Manager")]
+      //  [Authorize(Roles = "Manager")]
         [HttpPost]
         [Route("api/AddBranch")]
         public HttpResponseMessage UploadImage()
@@ -168,7 +168,7 @@ namespace RentApp.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        [Authorize(Roles = "Manager")]
+       // [Authorize(Roles = "Manager")]
         // POST: api/Branches
         [ResponseType(typeof(Branch))]
         public IHttpActionResult PostBranch(Branch branch)

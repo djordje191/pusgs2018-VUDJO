@@ -7,6 +7,15 @@
         <legend align="center">Rent a Car</legend>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col col-md-4 col-md-push-4">
+        <div class="form-group">
+          <label for="DateBirth">Start Date</label>
+      <input type="date" class="form-control" name="StartDate" required length="10" ngModel #StartDate="ngModel">
+      </div>
+    </div>
+  </div>
     
     <div class="row">
       <div class="col col-md-4 col-md-push-4">
@@ -38,6 +47,10 @@
               </agm-marker>
             </div>
           </agm-map>
+          <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+
+            <br>
+              <button type="submit" class="btn btn-success" [disabled]="!f.valid">Rent</button>
       </div>
     </div>
     
@@ -48,7 +61,7 @@
     <div class="form-group">
       <label class="col-md-4 control-label" for="addServiceButton"></label>
       <div class="col-md-4">
-        <button type="submit" id="addServiceButton" name="addServiceButton" class="btn btn-success" [disabled]="!f.valid || startBranch==null || endBranch==null">Rent</button>
+        <button type="submit" (click)="payWithPayPal()" class="btn btn-success">Pay with paypal</button>
       </div>
     </div>
     

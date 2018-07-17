@@ -177,7 +177,7 @@ namespace RentApp.Controllers
         }
 
 
-        [Authorize(Roles = "Manager")]
+      //  [Authorize(Roles = "Manager")]
         [HttpPost]
         [Route("api/AddVehicle")]
         public HttpResponseMessage UploadImage()

@@ -26,6 +26,7 @@
     "jquery": "^3.3.1",
     "materialize-css": "^1.0.0-rc.1",
     "ng2-datepicker": "^3.0.0",
+    "ngx-paypal": "^3.0.0",
     "npm": "^6.1.0",
     "rxjs": "^6.0.0",
     "rxjs-compat": "^6.2.1",
